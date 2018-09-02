@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/home"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_perfume"
+        android:icon="@mipmap/perfume"
+        android:title="@string/title_perfume" />
+
+    <item
+        android:id="@+id/navigation_trimming"
+        android:icon="@mipmap/trimm"
+        android:title="@string/title_trimmingHair" />
+    <item
+        android:id="@+id/navigation_style"
+        android:icon="@mipmap/style"
+        android:title="@string/title_style" />
+    <item
+        android:id="@+id/navigation_makeup"
+        android:icon="@mipmap/makeup"
+        android:title="@string/title_makeup" />
+
+</menu>
