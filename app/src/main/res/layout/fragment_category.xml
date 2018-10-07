@@ -17,6 +17,7 @@
         app:tabGravity="fill"
         app:tabTextColor="#FFF"
         android:theme="@style/AppTheme"
+        fontPath="fonts/iransans.ttf"
         app:tabSelectedTextColor="@color/colorAccent"
         />
 

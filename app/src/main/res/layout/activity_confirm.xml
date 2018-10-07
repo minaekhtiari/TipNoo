@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@mipmap/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmActivity">
+
+
+        <ImageView
+            android:id="@+id/tipnoo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?actionBarSize"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@mipmap/tipnoo" />
+        <EditText android:textSize="12dp" android:textColor="#ffffffff"
+            android:textColorHint="#ffffffff"
+            android:gravity="center"
+           android:id="@+id/code_number_input"
+          android:background="@drawable/bg_red"
+            android:padding="8dp" android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="50.0dip"
+            android:layout_marginRight="60.0dip"
+            android:hint="کد را وارد کنید"
+            android:maxLength="11"
+            android:layout_below="@id/tipnoo_txt"
+            android:layout_centerHorizontal="true"
+           />
+        <Button
+            android:textSize="12.0sp"
+            android:textColor="#ffb9311f"
+            android:id="@+id/btn_confirm"
+            android:background="@drawable/bg_yellow"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp" android:layout_marginTop="50dp"
+            android:layout_marginRight="60dp" android:text="تایید"
+            android:layout_below="@id/code_number_input"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/tipnoo_txt"
+            android:textColor="#ffffffff"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240.0dip"
+            android:text="تیپ نو" android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"  />
+
+</RelativeLayout>
