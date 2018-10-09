@@ -24,7 +24,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="60dp"
-        android:hint="شماره همراه خود را وارد کنید"
+        android:hint="@string/enter_number"
         android:maxLength="11"
         android:layout_below="@id/tipnoo_txt"
         android:layout_centerHorizontal="true"
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="50.0dip" android:layout_marginLeft="60dp"
         android:layout_marginTop="50.0dip" android:layout_marginRight="60dp"
-        android:text="ورود"
+        android:text="@string/enter_txt"
         android:layout_below="@id/mobile_number_input"
         android:layout_centerHorizontal="true"  />
     <TextView
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="238dp"
-        android:text="تیپ نو"
+        android:text="@string/app_name_fa"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>

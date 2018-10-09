@@ -21,13 +21,14 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true" />
                 <me.relex.circleindicator.CircleIndicator
-                   android:id="@+id/indicator"
+                    android:id="@+id/indicator"
                     android:background="#fff2f0ed"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true" />
             </RelativeLayout>
-            <RelativeLayout android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="2">
@@ -42,7 +43,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
-                                android:text="ویدیوهای منتخب"
+                                android:text="@string/selected_videos"
                                 android:layout_alignParentRight="true"
                                />
                             <TextView
@@ -50,7 +51,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
-                                android:text="بیشتر"
+                                android:text="@string/more_listitem"
                                 android:layout_alignParentLeft="true"/>
                                 <!--fontPath="fonts/iransans.ttf" />-->
                         </RelativeLayout>
@@ -62,28 +63,37 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView android:textSize="12sp"
+                            <TextView
+                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
-                                android:text="ویدیوهای پربیننده"
+                                android:text="@string/mostviewed_videos"
                                 android:layout_alignParentRight="true"
                               />
-                            <TextView android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="بیشتر" android:layout_alignParentLeft="true" fontPath="fonts/iransans.ttf" />
+                            <TextView
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10.0dip"
+                                android:text="@string/more_listitem"
+                                android:layout_alignParentLeft="true"
+                                />
                         </RelativeLayout>
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/mostviewed_videos"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="0.5" />
-                        <RelativeLayout android:layout_width="match_parent"
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <TextView
                                 android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10.0dip"
-                                android:text="ویدیوهای موردعلاقه"
+                                android:text="@string/favorite_videos"
                                 android:layout_alignParentRight="true"
                                 />
                             <TextView
@@ -91,12 +101,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
-                                android:text="بیشتر"
+                                android:text="@string/more_listitem"
                                 android:layout_alignParentLeft="true"
                                />
                         </RelativeLayout>
                         <android.support.v7.widget.RecyclerView
-                           android:id="@+id/favorite_videos"
+                            android:id="@+id/favorite_videos"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="0.5" />

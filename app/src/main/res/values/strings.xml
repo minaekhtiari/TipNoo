@@ -11,5 +11,16 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_tabb">TabbActivity</string>
+    <string name="select_sex">جنسیت خود را انتخاب کنید</string>
+    <string name="confirm_txt">تایید</string>
+    <string name="enter_code">کد را وارد کنید</string>
+    <string name="app_name_fa">تیپ نو</string>
+    <string name="enter_number">شماره همراه خود را وارد کنید</string>
+    <string name="enter_txt">ورود</string>
+    <string name="more_listitem">بیشتر</string>
+    <string name="selected_videos">ویدیوهای منتخب</string>
+    <string name="mostviewed_videos">ویدیوهای پربیننده</string>
+    <string name="favorite_videos">ویدیوهای موردعلاقه</string>
+    <string name="card_view_text">ده عطر محبوب بانوان</string>
 
 </resources>

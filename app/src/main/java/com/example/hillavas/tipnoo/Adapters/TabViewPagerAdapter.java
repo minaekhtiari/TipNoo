@@ -12,6 +12,7 @@ public class TabViewPagerAdapter extends FragmentPagerAdapter {
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
     public TabViewPagerAdapter(FragmentManager manager) {
+
         super(manager);
     }
 

@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="240dp"
-    android:text="تیپ نو"
+        android:text="@string/app_name_fa"
         android:layout_below="@id/tipnoo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="جنسیت خود را انتخاب کنید"
+        android:text="@string/select_sex"
         android:layout_below="@id/tipnoo_txt" android:layout_centerHorizontal="true"
         />
     <LinearLayout
