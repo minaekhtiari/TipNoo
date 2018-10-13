@@ -15,7 +15,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
      //   Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
-      CharkhoneSdkApp.initSdk((Context) this, getSecrets(), false);
+    //    CharkhoneSdkApp.initSdk((Context) this, getSecrets(), false);
 
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -25,8 +25,8 @@ public class App extends Application {
         );
     }
 
-    public String[] getSecrets() {
-        return getResources().getStringArray(R.array.secrets);
-    }
+//    public String[] getSecrets() {
+//        return getResources().getStringArray(R.array.secrets);
+//    }
 }
 

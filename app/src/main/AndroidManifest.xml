@@ -23,7 +23,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name">
+
+        </activity>
         <activity android:name=".VideoDetailActivity" />
         <activity android:name=".ConfirmActivity" />
         <activity android:name=".SelectSexActivity" />
@@ -35,14 +37,13 @@
             </intent-filter>
         </activity>
 
-         <!--&lt;!&ndash; Declare SMS Broadcast receiver &ndash;&gt;-->
-         <!--<receiver android:name=".SMSReceiver">-->
-         <!--<intent-filter android:priority="999">-->
-         <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
-         <!--</intent-filter>-->
-         <!--</receiver>-->
 
-        <activity android:name=".SubscribeConfirmActivity"></activity>
+        <!--&lt;!&ndash; Declare SMS Broadcast receiver &ndash;&gt;-->
+        <!--<receiver android:name=".SMSReceiver">-->
+            <!--<intent-filter android:priority="999">-->
+                <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
     </application>
 
 </manifest>
