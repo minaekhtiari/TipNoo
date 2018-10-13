@@ -20,6 +20,9 @@ import com.android.billingclient.util.IabHelper;
 import com.android.billingclient.util.IabResult;
 import com.android.billingclient.util.Inventory;
 import com.android.billingclient.util.Purchase;
+import com.example.hillavas.tipnoo.Models.ResultJson;
+import com.example.hillavas.tipnoo.Models.SubscribeModel;
+import com.example.hillavas.tipnoo.Retrofit.OtpApiFactory;
 import com.example.hillavas.tipnoo.Tools.ConnectionChecker;
 import com.example.hillavas.tipnoo.Tools.Validator;
 
@@ -30,6 +33,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RegisterActivity extends AppCompatActivity implements IabBroadcastReceiver.IabBroadcastListener{
     public static final String MOBILE_NUMBER = "MOBILE_NUMBER";
+    public static final String TRANSACTIONID = "TRANSACTIONID";
+    public static final String SUBSCRIBEDUSER = "SubscribedUser";
     Button btnRegister;
     EditText editmobileNumber;
 
@@ -48,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
     String payload = "";
     String phoneNumber;
     FragmentActivity activity;
-    ProgressBar progressBar;
+   // ProgressBar progressBar;
     String purchaseToken;
 
 
@@ -61,43 +66,8 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
         btnRegister=findViewById(R.id.btn_register);
         editmobileNumber=findViewById(R.id.mobile_number_input);
         sharedPreferencesHome = PreferenceManager.getDefaultSharedPreferences(RegisterActivity.this);
-        //separateVariant
-        if(BuildConfig.FLAVOR.equals("irancell")){
-            //Charkhune
-            String base64EncodedPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIHg4cW9avnZYkKOet/k/TSsXngpWXtVpuwvxXhfn3HdrWV47LA28aBrODL1n9+corT+F5nIVa5pd3p2xR99ob8rv3pssYkkBU9Z21d+JVx4tLxTXetazZCaL8Uux3sJTHNHC6Yuab/SXtZLK/2ArYRKbmbaNBo8CJgHXTNMRSBwIDAQAB";
 
-            // Create the helper, passing it our context and the public key to verify signatures with
-            Log.d(TAG, "Creating IAB helper.");
-            mHelper = new IabHelper(RegisterActivity.this, base64EncodedPublicKey);
-
-            // enable debug logging (for a production application, you should set this to false).
-            mHelper.enableDebugLogging(false);
-
-
-            mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-                public void onIabSetupFinished(IabResult result) {
-                    Log.d(TAG, "Setup finished.");
-
-                    if (!result.isSuccess()) {
-                        // Oh noes, there was a problem.
-                        complain("Problem setting up in-app billing: " + result);
-                        return;
-                    }
-
-                    // Have we been disposed of in the meantime? If so, quit.
-                    if (mHelper == null) return;
-
-//                // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                    Log.d(TAG, "Setup successful. Querying inventory.");
-                    try {
-                        mHelper.queryInventoryAsync(mGotInventoryListener);
-                    } catch (IabHelper.IabAsyncInProgressException e) {
-
-                        complain("Error querying inventory. Another async operation in progress.");
-                    }
-                }
-            });
-        }
+        separateVariant();
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +77,6 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
                     Toast.makeText(RegisterActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String regexStr = "^[0-9]*$";
                 String mobileNumber = String.valueOf(editmobileNumber.getText());
                 if (!Validator.isMobileNumber(mobileNumber)) {
 
@@ -144,50 +113,54 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
 
                 } else {
                     Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
-                     Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
-                     startActivity(intent);
-//                    RequestMobileGiverModel mobileGiverModel = new RequestMobileGiverModel();
-//                    mobileGiverModel.setMobileNumber(Long.valueOf(editMobileNumber.getText().toString()));
-//                    btnRegister.setVisibility(View.INVISIBLE);
-//                    progressBar.setVisibility(View.VISIBLE);
-//                    RetrofitFactory.getRetrofitClient().registerOtp(mobileGiverModel).enqueue(new Callback<ResultJsonInteger>() {
-//                        @Override
-//                        public void onResponse(Call<ResultJsonInteger> call, Response<ResultJsonInteger> response) {
-//
-//                            if (response.body() != null && response.body().isIsSuccessfull()) {
-//                                if (response.body().getResult() == -1) {
-//                                    sharedPreferencesHome.edit().putString(GUID, response.body().getMessage()).commit();
-//                                    //goto register
-//                                    new FragmentHelper(new Fragment_Register(),
-//                                            R.id.frameLayout_base,
-//                                            activity.getSupportFragmentManager()
-//                                    ).replace(false);
-//
-//                                } else {
-//                                    new FragmentHelper(new Fragment_CodeRequest(),
-//                                            R.id.frameLayout_base,
-//                                            activity.getSupportFragmentManager()
-//                                            //   getChildFragmentManager()
-//                                    ).replace(true);
-//                                    btnRegister.setEnabled(true);
-//                                }
-//                                resultCode = response.body().getResult();
-//                                //todo
-//                                sharedPreferencesHome.edit().putInt(FIRST_RESULT_CODE, resultCode).commit();
-//                                return;
-//                            } else
-//
-//                                Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                            btnRegister.setVisibility(View.VISIBLE);
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<ResultJsonInteger> call, Throwable t) {
-//                            Throwable tt = t;
-//                            btnRegister.setVisibility(View.VISIBLE);
-//
-//                        }
-//                    });
+
+
+                    SubscribeModel subscribeModel = new SubscribeModel();
+                    subscribeModel.setMobileNumber(String.valueOf(editmobileNumber.getText()));
+
+                    btnRegister.setEnabled(false);
+                   // progressBar.setVisibility(View.VISIBLE);
+
+                    OtpApiFactory.getOtpClient().subscribe(subscribeModel).enqueue(new Callback<ResultJson>() {
+                        @Override
+                        public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+                            if (response != null && response.body() != null) {
+
+                                if (response.body().isIsSuccessfull() && response.body().getResult().equals("-1")) { //user is subscribed via phoneNumber
+
+                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
+                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getMessage()).commit();
+                                    sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, true).commit();
+                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+                                    startActivity(intent);
+
+                                } else if (response.body().isIsSuccessfull()) {
+
+                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
+                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getResult().toString()).commit();
+                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast toast = Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
+
+                                }
+
+                            }
+
+                            btnRegister.setEnabled(true);
+                          //  progressBar.setVisibility(View.INVISIBLE);
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResultJson> call, Throwable t) {
+                            Toast.makeText(RegisterActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+                            btnRegister.setEnabled(true);
+                           // progressBar.setVisibility(View.INVISIBLE);
+
+                        }
+
+                    });
 
                 }
 
@@ -196,6 +169,46 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
         });
 
     }
+
+    private void separateVariant() {
+        if(BuildConfig.FLAVOR.equals("irancell")){
+            //Charkhune
+            String base64EncodedPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIHg4cW9avnZYkKOet/k/TSsXngpWXtVpuwvxXhfn3HdrWV47LA28aBrODL1n9+corT+F5nIVa5pd3p2xR99ob8rv3pssYkkBU9Z21d+JVx4tLxTXetazZCaL8Uux3sJTHNHC6Yuab/SXtZLK/2ArYRKbmbaNBo8CJgHXTNMRSBwIDAQAB";
+
+            // Create the helper, passing it our context and the public key to verify signatures with
+            Log.d(TAG, "Creating IAB helper.");
+            mHelper = new IabHelper(RegisterActivity.this, base64EncodedPublicKey);
+
+            // enable debug logging (for a production application, you should set this to false).
+            mHelper.enableDebugLogging(false);
+
+
+            mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                public void onIabSetupFinished(IabResult result) {
+                    Log.d(TAG, "Setup finished.");
+
+                    if (!result.isSuccess()) {
+                        // Oh noes, there was a problem.
+                        complain("Problem setting up in-app billing: " + result);
+                        return;
+                    }
+
+                    // Have we been disposed of in the meantime? If so, quit.
+                    if (mHelper == null) return;
+
+//                // IAB is fully set up. Now, let's get an inventory of stuff we own.
+                    Log.d(TAG, "Setup successful. Querying inventory.");
+                    try {
+                        mHelper.queryInventoryAsync(mGotInventoryListener);
+                    } catch (IabHelper.IabAsyncInProgressException e) {
+
+                        complain("Error querying inventory. Another async operation in progress.");
+                    }
+                }
+            });
+        }
+    }
+
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
@@ -358,8 +371,6 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
             complain("Error querying inventory. Another async operation in progress.");
         }
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

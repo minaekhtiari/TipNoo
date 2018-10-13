@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     fragment=new HomeFragment();
                     loadFragment(fragment);
-
                     toolbarTitle.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_perfume:
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putInt("arg",13);
                     fragment.setArguments(bundle);
-                   // fragment=new PerfumeFragment();
                     loadFragment(fragment);
                     toolbarTitle.setText(R.string.title_perfume);
                     return true;
@@ -49,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
                     bundle2.putInt("arg",12);
                     fragment2.setArguments(bundle2);
                     loadFragment(fragment2);
-//                    fragment=new TrimmFragment();
-//                    loadFragment(fragment);
                     toolbarTitle.setText(R.string.title_trimmingHair);
                     return true;
                 case R.id.navigation_style:
@@ -59,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
                     bundle3.putInt("arg",11);
                     fragment3.setArguments(bundle3);
                     loadFragment(fragment3);
-//                    fragment=new StyleFragment();
-//                    loadFragment(fragment);
                     toolbarTitle.setText(R.string.title_style);
                     return true;
                 case R.id.navigation_makeup:
@@ -69,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     bundle4.putInt("arg",10);
                     fragment4.setArguments(bundle4);
                     loadFragment(fragment4);
-//                    fragment=new MakeupFragment();
-//                    loadFragment(fragment);
                     toolbarTitle.setText(R.string.title_makeup);
                     return true;
 
@@ -84,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+       toolbarTitle =  findViewById(R.id.toolbar_title);
+        BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new HomeFragment());
     }
