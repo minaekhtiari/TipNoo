@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_red"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/layout"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp">
+
+
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="@string/requestCodeRecevied"
+                android:textColor="#FFF"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/linearInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/text1"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="64dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_yellow"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/fragment_codeRequest_editCodeRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/fragment_register_Btn_register2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout"
+            android:layout_marginTop="34dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/ch_sdk_btn"
+            android:text="@string/realRequestCode"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="24dp"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp">
+
+            <TextView
+                android:id="@+id/btn_back_to_subscribe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/dontGiveRequestCode"
+                android:textColor="#FFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

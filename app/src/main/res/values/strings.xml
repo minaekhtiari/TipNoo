@@ -22,5 +22,8 @@
     <string name="mostviewed_videos">ویدیوهای پربیننده</string>
     <string name="favorite_videos">ویدیوهای موردعلاقه</string>
     <string name="card_view_text">ده عطر محبوب بانوان</string>
-
+    <string name="requestCodeRecevied">کد فعال سازی ارسال شده توسط \n  پیامک را در کادر زیر وارد کنید</string>
+    <string name="realRequestCode">فعالسازی</string>
+    <string name="dontGiveRequestCode">کد فعال سازی را دریافت نکرده اید؟</string>
+    <string name="incorrectCode">کد وارد شده اشتباه است</string>
 </resources>
