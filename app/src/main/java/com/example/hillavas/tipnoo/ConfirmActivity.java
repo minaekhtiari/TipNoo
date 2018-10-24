@@ -3,6 +3,7 @@ package com.example.hillavas.tipnoo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class ConfirmActivity extends AppCompatActivity {
 
     public static final String GUID = "GUID";
-    public static final String TRANSACTIONID = "TRANSACTIONID";
+    public static final String TRANSACTIONID = "TRANSACTIONID ";
     public static final String SUBSCRIBEDUSER = "SubscribedUser";
 
     SharedPreferences sharedPreferencesHome;
@@ -41,13 +42,18 @@ public class ConfirmActivity extends AppCompatActivity {
        btnCodeRequestSender = (Button) findViewById(R.id.btn_confirm);
        editCode = (EditText) findViewById(R.id.code_number_input);
         btnBackToSubscribe=findViewById(R.id.btn_back_to_subscribe);
-
-
+        sharedPreferencesHome = PreferenceManager.getDefaultSharedPreferences(ConfirmActivity.this);
+        btnBackToSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         this.btnCodeRequestSender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent=new Intent(ConfirmActivity.this,SelectSexActivity.class);
-//                startActivity(intent);
+                Intent intent=new Intent(ConfirmActivity.this,SelectSexActivity.class);
+                startActivity(intent);
 
 
 

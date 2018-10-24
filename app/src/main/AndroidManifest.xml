@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -23,26 +22,30 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
-        <activity android:name=".VideoDetailActivity" />
-        <activity android:name=".ConfirmActivity" />
-        <activity android:name=".SelectSexActivity" />
-        <activity android:name=".RegisterActivity">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".VideoDetailActivity" />
+        <activity android:name=".ConfirmActivity" />
+        <activity android:name=".SelectSexActivity" />
+        <activity android:name=".RegisterActivity" />
 
-         <!--&lt;!&ndash; Declare SMS Broadcast receiver &ndash;&gt;-->
-         <!--<receiver android:name=".SMSReceiver">-->
-         <!--<intent-filter android:priority="999">-->
-         <!--<action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
-         <!--</intent-filter>-->
-         <!--</receiver>-->
+        <!-- &lt;!&ndash; Declare SMS Broadcast receiver &ndash;&gt; -->
+        <!--
+        <receiver a
+        ndroid:name=".SMSReceiver">
+        -->
+        <!-- <intent-filter android:priority="999"> -->
+        <!-- <action android:name="android.provider.Telephony.SMS_RECEIVED" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
-        <activity android:name=".SubscribeConfirmActivity"></activity>
+        <activity android:name=".SubscribeConfirmActivity" />
+        <activity android:name=".MoreVideoListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.hillavas.tipnoo;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -58,7 +60,8 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
 
 
     SharedPreferences sharedPreferencesHome;
-
+    ProgressBar mprogressBar;
+    ObjectAnimator anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,8 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
         btnRegister=findViewById(R.id.btn_register);
         editmobileNumber=findViewById(R.id.mobile_number_input);
         sharedPreferencesHome = PreferenceManager.getDefaultSharedPreferences(RegisterActivity.this);
+//        mprogressBar = (ProgressBar) findViewById(R.id.circular_progress_bar);
+         anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
 
         separateVariant();
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +117,9 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
                     }
 
                 } else {
+                    anim.setDuration(15000);
+                    anim.setInterpolator(new DecelerateInterpolator());
+                    anim.start();
                     Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
 
 

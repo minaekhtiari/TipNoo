@@ -4,9 +4,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ContentList {
+
     @SerializedName("ContentId")
     @Expose
     private Integer contentId;
+    @SerializedName("FavoriteId")
+    @Expose
+    private Integer favoriteId;
     @SerializedName("CategoryId")
     @Expose
     private Integer categoryId;
@@ -53,6 +57,14 @@ public class ContentList {
 
     public void setContentId(Integer contentId) {
         this.contentId = contentId;
+    }
+
+    public Integer getFavoriteId() {
+        return favoriteId;
+    }
+
+    public void setFavoriteId(Integer favoriteId) {
+        this.favoriteId = favoriteId;
     }
 
     public Integer getCategoryId() {
@@ -158,4 +170,5 @@ public class ContentList {
     public void setBody(String body) {
         this.body = body;
     }
+
 }

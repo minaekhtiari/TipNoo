@@ -9,19 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.example.hillavas.bottomnavigationview.R;
 import com.example.hillavas.tipnoo.Models.ContentList;
 import com.example.hillavas.tipnoo.R;
 
 import java.util.ArrayList;
 
+//import com.example.hillavas.bottomnavigationview.R;
 
-public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecyclerAdapter.ViewHolder> {
+
+public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContentRecyclerAdapter.ViewHolder> {
     private ArrayList<ContentList> contentLists;
     Context context;
     private ItemClickListener mClickListener;
 
-    public  ContentRecyclerAdapter(Context context,ArrayList<ContentList> contentLists){
+    public HomeContentRecyclerAdapter(Context context, ArrayList<ContentList> contentLists){
         this.context=context;
         this.contentLists=contentLists;
 
@@ -30,7 +31,7 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
       View v=  LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_view_rcyclecontent,viewGroup, false);
+                .inflate(R.layout.card_view_rcyclehomefragment,viewGroup, false);
         return new ViewHolder(v) ;
     }
 

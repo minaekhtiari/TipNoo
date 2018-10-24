@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="@string/select_sex"
-        android:layout_below="@id/tipnoo_txt" android:layout_centerHorizontal="true"
+        android:layout_below="@id/tipnoo_txt"
+        android:layout_centerHorizontal="true"
         />
     <LinearLayout
         android:orientation="horizontal"
