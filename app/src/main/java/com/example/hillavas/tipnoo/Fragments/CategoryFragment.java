@@ -77,7 +77,7 @@ public class CategoryFragment extends Fragment {
 
         }
         FileApi fileApi = RetroClient.getApiService();
-        retrofit2.Call<TabResults> tabResultsCall = fileApi.getPerfumeTabs(parentid);
+        retrofit2.Call<TabResults> tabResultsCall = fileApi.getAlleContent(parentid);
         tabResultsCall.enqueue(new Callback<TabResults>() {
             @Override
             public void onResponse(retrofit2.Call<TabResults> call, Response<TabResults> response) {

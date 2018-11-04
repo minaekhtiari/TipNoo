@@ -43,11 +43,11 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     final long DELAY_MS = 10;
-    RecyclerView FavoriteRecycler;
+    RecyclerView favoriteRecycler;
     ViewPager Gallerypager;
-    RecyclerView MostViewedRecycler;
+    RecyclerView mostViewedRecycler;
     final long PERIOD_MS = 3000;
-    RecyclerView SelectedRecycler;
+    RecyclerView selectedRecycler;
     List<String> certificationText;
     int currentpage = 0;
     CircleIndicator indicator;
@@ -75,12 +75,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         urls = new ArrayList();
         certificationText = new ArrayList();
         Gallerypager = rootview.findViewById(R.id.Gallerypager);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        SelectedRecycler =rootview.findViewById(R.id.selected_videos);
-        SelectedRecycler.setLayoutManager(layoutManager);
-        MostViewedRecycler = rootview.findViewById(R.id.mostviewed_videos);
-        LinearLayoutManager lLayoutManagerMostViewed= new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        MostViewedRecycler.setLayoutManager(lLayoutManagerMostViewed);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        selectedRecycler =rootview.findViewById(R.id.selected_videos);
+        selectedRecycler.setLayoutManager(layoutManager);
+        mostViewedRecycler = rootview.findViewById(R.id.mostviewed_videos);
+        LinearLayoutManager lLayoutManagerMostViewed= new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,true );
+        lLayoutManagerMostViewed.setReverseLayout(true);
+        lLayoutManagerMostViewed.setStackFromEnd(true);
+        mostViewedRecycler.setLayoutManager(lLayoutManagerMostViewed);
+
         //FavoriteRecycler = (RecyclerView) rootview.findViewById(R.id.favorite_videos);
         indicator =  rootview.findViewById(R.id.indicator);
         moreSelectedVideo=rootview.findViewById(R.id.more_selectedvideo);
@@ -119,7 +124,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     final ArrayList <ContentList> contentLists= (ArrayList<ContentList>) response.body().getResult();
                     HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(getContext(), contentLists);
-                    MostViewedRecycler.setAdapter(contentRecyclerAdapter);
+                   mostViewedRecycler.setAdapter(contentRecyclerAdapter);
 
 
                     Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
@@ -153,7 +158,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     final ArrayList <ContentList> contentLists= (ArrayList<ContentList>) response.body().getResult();
                     HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(getContext(), contentLists);
-                    SelectedRecycler.setAdapter(contentRecyclerAdapter);
+                    selectedRecycler.setAdapter(contentRecyclerAdapter);
 
 
                     Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
@@ -186,7 +191,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     //    Toast.makeText(certification.this,"dorosteeeee",Toast.LENGTH_SHORT).show();
                   final List <ContentList> contentLists=response.body().getResult();
                     for (int i=0;i<contentLists.size();i++) {
-                        String picurl ="http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+( contentLists.get(i).getTeaserId());
+                        String picurl ="http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+( contentLists.get(i).getHeaderImageId());
 
                         String title=contentLists.get(i).getSubject();
                         certificationText.add(title);

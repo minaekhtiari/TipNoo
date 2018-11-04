@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    tools:context="com.example.hillavas.tipnoo.SearchActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/toolbar_layout"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <TextView
+                    android:text="@string/search_txt"
+                    android:textColor="#FFF"
+                    android:id="@+id/toolbar_title"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:padding="8dp"
+                    android:id="@+id/filter"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/filter"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+<RelativeLayout
+    android:layout_below="@+id/app_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
+    <com.google.android.flexbox.FlexboxLayout
+        android:layoutDirection="rtl"
+        app:flexDirection="row_reverse"
+       android:foregroundGravity="right"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/flexbox_layout"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:flexWrap="wrap"
+        app:alignItems="baseline"
+        app:alignContent="flex_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+    </com.google.android.flexbox.FlexboxLayout>
+</RelativeLayout>
+
+    <Button
+        android:textColor="#fff"
+        android:text="@string/search_txt"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_red_whitout_radius"
+        android:id="@+id/button"
+       android:layout_alignParentBottom="true"
+     android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

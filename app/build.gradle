@@ -50,7 +50,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //Retrofit
-    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //Recycler
@@ -64,5 +64,13 @@ dependencies {
     implementation 'me.relex:circleindicator:1.2.2@aar'
     implementation files('libs/inAppSDK.aar')
     implementation files('libs/inAppPurchase.aar')
+
+    //TagLibrary
+    implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.github.fiskurgit:ChipCloud:3.0.5'
+
+    //videoplayer
+    compile 'com.github.appunite:video-player-android:1.0.1'
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
 
 }

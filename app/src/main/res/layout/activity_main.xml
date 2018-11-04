@@ -24,22 +24,23 @@
     android:layout_height="wrap_content" />
 
     <ImageView
-        android:layout_marginRight="20dp"
+       android:padding="8dp"
         android:id="@+id/search"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
 
     <ImageView
-        android:layout_marginLeft="20dp"
+     android:padding="8dp"
         android:id="@+id/filter"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
 </RelativeLayout>
 
     <FrameLayout
@@ -50,7 +51,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"

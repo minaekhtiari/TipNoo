@@ -26,4 +26,6 @@
     <string name="realRequestCode">فعالسازی</string>
     <string name="dontGiveRequestCode">کد فعال سازی را دریافت نکرده اید؟</string>
     <string name="incorrectCode">کد وارد شده اشتباه است</string>
+    <string name="search_txt">جستجو</string>
+    <string name="filter_txt">فیلتر</string>
 </resources>

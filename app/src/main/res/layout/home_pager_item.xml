@@ -8,24 +8,28 @@
         android:id="@+id/image_home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="0dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
 
         />
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="#9fffffff"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="30dp"
+    >
     <TextView
-        android:padding="30dp"
-        android:background="#bbffffff"
+
+        android:textSize="12dp"
         android:textColor="#000000"
         android:gravity="center"
         android:id="@+id/textview_home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true" />
+        android:paddingTop="13dp"
 
+
+       />
+</RelativeLayout>
 </RelativeLayout>

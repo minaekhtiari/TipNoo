@@ -1,17 +1,26 @@
 package com.example.hillavas.tipnoo.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.example.hillavas.bottomnavigationview.R;
 import com.example.hillavas.tipnoo.Models.ContentList;
 import com.example.hillavas.tipnoo.R;
+import com.example.hillavas.tipnoo.VideoDetailActivity;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 
@@ -35,11 +44,28 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
         ContentList contentListPositon=contentLists.get(position);
         viewHolder.title.setText(contentListPositon.getSubject());
-      //  Picasso.with(context).load(contentListPositon.getHeaderImageId()).into(viewHolder.bookmark);
+        viewHolder.viewcount.setText(contentListPositon.getViewCount()+"");
+        viewHolder.likecount.setText(contentListPositon.getLikeCount()+"");
+        if((contentListPositon.getIsLiked())==true)
+        {
+//todo
+            viewHolder.likeimg.setImageResource(R.mipmap.ic_launcher);
 
+        }else{
+            viewHolder.likeimg.setImageResource(R.mipmap.like);
+        }
+        if((contentListPositon.getIsBookmarked())==true)
+        {
+            viewHolder.bookmark.setImageResource(R.mipmap.bookmark);
+        }else{
+//todo
+            viewHolder.bookmark.setImageResource(R.mipmap.bookmark);
+        }
+
+        Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+contentListPositon.getHeaderImageId()).into(viewHolder.contetntImg);
 
     }
 
@@ -50,17 +76,17 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-          TextView title,likecount,duration;
-          ImageView contetntImg,bookmark,share,like,time;
+          TextView title,viewcount,likecount;
+          ImageView contetntImg,bookmark,likeimg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title=itemView.findViewById(R.id.content_title);
-//            likecount=itemView.findViewById(R.id.likeCount);
-//            duration=itemView.findViewById(R.id.timeDuration);
-//
-//            contetntImg=itemView.findViewById(R.id.content_image);
-//            bookmark=itemView.findViewById(R.id.bookMark);
+            contetntImg=itemView.findViewById(R.id.image_view_subcategory_fragment);
+            likecount=itemView.findViewById(R.id.like_count);
+            bookmark=itemView.findViewById(R.id.bookmark);
+            likeimg=itemView.findViewById(R.id.like_img);
+            viewcount=itemView.findViewById(R.id.view_count);
 
             itemView.setOnClickListener(this);
 
@@ -71,6 +97,7 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
+
         }
     }
 
@@ -79,5 +106,6 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
     }
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+
     }
 }

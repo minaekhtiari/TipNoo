@@ -15,10 +15,11 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:tabGravity="fill"
-        app:tabTextColor="#FFF"
-        android:theme="@style/AppTheme"
+        app:tabTextColor="#fff"
+        android:textDirection="rtl"
+
         fontPath="fonts/iransans.ttf"
-        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabSelectedTextColor="#ffffff"
         />
 
 
@@ -27,11 +28,6 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;-->
-    <!--<TextView-->
-    <!--android:id="@+id/perfume"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:text="Perfume" />-->
+
 
 </FrameLayout>

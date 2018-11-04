@@ -1,6 +1,7 @@
 package com.example.hillavas.tipnoo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
@@ -9,17 +10,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-//import com.example.hillavas.bottomnavigationview.R;
 import com.example.hillavas.tipnoo.Fragments.CategoryFragment;
 import com.example.hillavas.tipnoo.Fragments.HomeFragment;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
    private TextView toolbarTitle;
+   ImageView search,filter;
  Fragment fragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -75,8 +78,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-       toolbarTitle =  findViewById(R.id.toolbar_title);
+        search=findViewById(R.id.search);
+        filter=findViewById(R.id.filter);
+        search.setOnClickListener(this);
+        filter.setOnClickListener(this);
+        toolbarTitle =  findViewById(R.id.toolbar_title);
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new HomeFragment());
@@ -88,11 +94,24 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
+
     @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.search:
+                Intent intentsearch=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intentsearch);
+                    break;
+            case R.id.filter:
+                Intent intentfilter=new Intent(MainActivity.this,FilterActivity.class);
+                startActivity(intentfilter);
+                break;
+        }
+    }
+
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
-
-
 }
