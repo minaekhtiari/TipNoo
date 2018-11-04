@@ -100,7 +100,7 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-            Toast.makeText(context,"test"+getAdapterPosition(),Toast.LENGTH_LONG).show();
+         //   Toast.makeText(context,"test"+getAdapterPosition(),Toast.LENGTH_LONG).show();
             Intent intent=new Intent(context,VideoDetailActivity.class);
             intent.putExtra("isLike",contentLists.get(getAdapterPosition()).getIsLiked());
             intent.putExtra("isBookmark",contentLists.get(getAdapterPosition()).getIsBookmarked());
@@ -108,6 +108,7 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
             intent.putExtra("viewCount",contentLists.get(getAdapterPosition()).getViewCount());
             intent.putExtra("videoId",contentLists.get(getAdapterPosition()).getVideoId());
             intent.putExtra("HeaderImageId",contentLists.get(getAdapterPosition()).getHeaderImageId());
+            intent.putExtra("ContentId",contentLists.get(getAdapterPosition()).getContentId());
             view.getContext().startActivity(intent);
 
         }

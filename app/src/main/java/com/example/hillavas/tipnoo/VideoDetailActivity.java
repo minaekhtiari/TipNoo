@@ -17,6 +17,8 @@ import android.widget.VideoView;
 import com.appunite.appunitevideoplayer.PlayerActivity;
 import com.example.hillavas.tipnoo.Models.ContentList;
 import com.example.hillavas.tipnoo.Models.ContentResult;
+import com.example.hillavas.tipnoo.Models.LikeDislikeBody;
+import com.example.hillavas.tipnoo.Models.LikeDislikeResults;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
 import com.squareup.picasso.Picasso;
@@ -34,15 +36,12 @@ import retrofit2.Response;
 
 public class VideoDetailActivity extends AppCompatActivity implements View.OnClickListener {
 private List<ContentList> contentLists;
-ImageView bookmarkimg
-   , likeimg
-    , shareimg
-    , videoimg,playicon;
-TextView likecount,viewcount;
-VideoView videoView;
+ImageView bookmarkImg, likeImg, shareImg, videoImg,playIcon;
+TextView likeTxt,viewTxt;
+
 Boolean isLike,isBookmark;
-int likeCount,viewCount;
-URL imgUrl;
+int likeCount,viewCount,contentId;
+
 String videoId,teaserId;
     JzvdStd videoview;
 
@@ -50,19 +49,19 @@ String videoId,teaserId;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detail);
-        bookmarkimg=findViewById(R.id.detail_bookmark_img);
-        likeimg=findViewById(R.id.detail_like_img);
-         shareimg=findViewById(R.id.detail_share_img);
-        likecount=findViewById(R.id.detail_like_count);
-        viewcount=findViewById(R.id.detail_view_count);
+        bookmarkImg=findViewById(R.id.detail_bookmark_img);
+        likeImg=findViewById(R.id.detail_like_img);
+         shareImg=findViewById(R.id.detail_share_img);
+        likeTxt=findViewById(R.id.detail_like_count);
+        viewTxt=findViewById(R.id.detail_view_count);
         videoview = (JzvdStd) findViewById(R.id.video_view);
-         videoimg=findViewById(R.id.video_img);
-         playicon=findViewById(R.id.detail_play_icon);
+         videoImg=findViewById(R.id.video_img);
+         playIcon=findViewById(R.id.detail_play_icon);
 
 
-         bookmarkimg.setOnClickListener(this);
-         likeimg.setOnClickListener(this);
-         shareimg.setOnClickListener(this);
+         bookmarkImg.setOnClickListener(this);
+         likeImg.setOnClickListener(this);
+         shareImg.setOnClickListener(this);
 
 
 
@@ -73,56 +72,64 @@ String videoId,teaserId;
       viewCount= (int) bundle.get("viewCount");
       videoId= (String) bundle.get("videoId");
       teaserId= (String) bundle.get("HeaderImageId");
+      contentId= (int) bundle.get("ContentId");
 
+        likeTxt.setText(likeCount+"");
+       viewTxt.setText(viewCount+"");
+        if(isLike==true){
+            likeImg.setImageResource(R.drawable.ic_favorite_black_36dp);
+        }else{
+            likeImg.setImageResource(R.drawable.ic_favorite_border_black_36dp);
+        }
 
+        if(isBookmark==true){
+            bookmarkImg.setImageResource(R.drawable.ic_bookmark_black_36dp);
+        }else {
+            bookmarkImg.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
 
-       likecount.setText(likeCount+"");
-       viewcount.setText(viewCount+"");
+        }
 
-        Picasso.with(VideoDetailActivity.this).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+teaserId).into(videoimg);
+        Picasso.with(VideoDetailActivity.this).load(
+                "http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+teaserId).into(videoImg);
 
-        playicon.setOnClickListener(new View.OnClickListener() {
+        playIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playicon.setVisibility(View.INVISIBLE);
-                videoimg.setVisibility(View.INVISIBLE);
+                playIcon.setVisibility(View.INVISIBLE);
+                videoImg.setVisibility(View.INVISIBLE);
                 videoview.setVisibility(View.VISIBLE);
 
 
-                videoview.setUp("https://hw16.cdn.asset.aparat.com/aparat-video/1b80a9e95e4d05a1fd2ac5d77397c59112430440-480p__86448.mp4"
+                videoview.setUp(("http://79.175.138.77:7091/file/getfile?FileType=video&fileid="+videoId)
                         , "" , Jzvd.SCREEN_WINDOW_NORMAL);
 
 
             }
         });
 
-        getContent();
+
     }
-        public void getContent(){
-
+        public void getLikeDislike(){
+            LikeDislikeBody likeDislikeBody=new LikeDislikeBody();
+            likeDislikeBody.setToken("007b428d-b807-4ccd-a3a8-afdcc0f18d0b");
+            likeDislikeBody.setContentId(contentId);
                 FileApi fileApi = RetroClient.getApiService();
-                final Call<ContentResult> contentResultCall=fileApi.getContent(
-                        "007b428d-b807-4ccd-a3a8-afdcc0f18d0b",10,1,10,"LastItem");
-                contentResultCall.enqueue(new Callback<ContentResult>() {
+                final Call<LikeDislikeResults> contentResultCall=fileApi.getLikeOrDislike(likeDislikeBody);
+                contentResultCall.enqueue(new Callback<LikeDislikeResults>() {
                     @Override
-                    public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
-
-                        response.body().getIsSuccessful();
-
+                    public void onResponse(Call<LikeDislikeResults> call, Response<LikeDislikeResults> response) {
                         if(response.isSuccessful()){
-                            contentLists=response.body().getResult();
-                            Toast.makeText(VideoDetailActivity.this,""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
-                            Log.d("---000",response.body().getIsSuccessful().toString());
+                     //   Toast.makeText(VideoDetailActivity.this,""+response.body().getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                        else {
 
                         }
-//                    for (int i=0;i<response.body().getResult().size();i++){
-                        //  Log.d("---000",response.body().getIsSuccessful().toString());
-//
-//                    }
+
                     }
+
                     @Override
-                    public void onFailure(Call<ContentResult> call, Throwable t) {
-                        Toast.makeText(VideoDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
+                    public void onFailure(Call<LikeDislikeResults> call, Throwable t) {
+                      //  Toast.makeText(VideoDetailActivity.this,""+t,Toast.LENGTH_SHORT).show();
                         Log.d("---000",t.toString());
                     }
                 });
@@ -145,26 +152,41 @@ String videoId,teaserId;
 
     @Override
     public void onClick(View v) {
-       switch (v.getId()){
-           case R.id.detail_bookmark_img:
-               bookmarkimg.setImageResource(R.drawable.ic_bookmark_fill_24dp);
-               break;
-           case R.id.detail_share_img:
+        switch (v.getId()) {
+            case R.id.detail_bookmark_img:
+                if (isBookmark == true) {
+                    bookmarkImg.setImageResource(R.drawable.ic_bookmark_black_36dp);
+                } else {
+                    bookmarkImg.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
 
-               try {
-                 //  if(EncryptedContentId != null) {
-                       Intent sendIntent = new Intent();
-                       sendIntent.setAction(Intent.ACTION_SEND);
-                       sendIntent.putExtra(Intent.EXTRA_TEXT,"http://www.time.ir/");
-                       sendIntent.setType("text/plain");
-                       startActivity(sendIntent);
-                  // }
-               }catch (Exception e){}
-               break;
-           case R.id.detail_like_img:
-            likeimg.setImageResource(R.drawable.ic_like_fill_24dp);
-               break;
-       }
+                }
+                break;
+            case R.id.detail_share_img:
+
+                try {
+                    //  if(EncryptedContentId != null) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "http://www.time.ir/");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                    // }
+                } catch (Exception e) {
+                }
+                break;
+            case R.id.detail_like_img:
+                if (isLike == true) {
+                    getLikeDislike();
+                    likeImg.setImageResource(R.drawable.ic_favorite_black_36dp);
+
+
+                } else {
+                    getLikeDislike();
+                    likeImg.setImageResource(R.drawable.ic_favorite_border_black_36dp);
+
+                    break;
+                }
+        }
     }
 }
 

@@ -31,17 +31,18 @@
 
                 <ImageView
                     android:padding="8dp"
-                    android:id="@+id/filter"
+                    android:id="@+id/search_back"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:src="@mipmap/filter"
+                    android:tint="#ffffff"
+                    android:src="@drawable/ic_backspace_36dp"
                     android:layout_width="48dp"
                     android:layout_height="48dp" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 <RelativeLayout
-    android:layout_below="@+id/app_bar"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp">
@@ -55,7 +56,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         app:flexWrap="wrap"
         app:alignItems="baseline"
-        app:alignContent="flex_start"
+        app:alignContent="flex_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        >

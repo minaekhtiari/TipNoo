@@ -1,8 +1,10 @@
 package com.example.hillavas.tipnoo.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,9 +35,10 @@ public class SubCategoryFragment extends Fragment {
     RecyclerView recyclerContent;
     int categoryId;
     TextView textView2;
+    FragmentActivity activity;
     public ArrayList<ContentList> contentLists;
     ContentRecyclerAdapter contentRecyclerAdapter;
-    Context context;
+
     public ArrayList<ContentList> rcyclDatas;
     public SubCategoryFragment() {
         // Required empty public constructor
@@ -53,7 +56,7 @@ public class SubCategoryFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_sub_category, container, false);
-        GridLayoutManager lLayout = new GridLayoutManager(context,1);
+        GridLayoutManager lLayout = new GridLayoutManager(getContext(),1);
         recyclerContent=v.findViewById(R.id.recyclerView);
         recyclerContent.setHasFixedSize(true);
         recyclerContent.setLayoutManager(lLayout);
@@ -82,7 +85,7 @@ public class SubCategoryFragment extends Fragment {
                    contentLists.clear();
                    contentLists.addAll(Lists);
                     contentRecyclerAdapter.notifyDataSetChanged();
-                    Toast.makeText(getContext(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
                 }
 //                    for (int i=0;i<response.body().getResult().size();i++){
@@ -92,17 +95,22 @@ public class SubCategoryFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getContext(),""+t,Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getContext(),""+t,Toast.LENGTH_SHORT).show();
                 Log.d("---000",t.toString());
             }
         });
 
         contentLists=new ArrayList<>();
-        contentRecyclerAdapter = new ContentRecyclerAdapter(context, contentLists);
+        contentRecyclerAdapter = new ContentRecyclerAdapter(getContext(), contentLists);
         recyclerContent.setAdapter(contentRecyclerAdapter);
     }
 
     }
+    @Override
+    public void onAttach(Activity activity) {
+        this.activity= (FragmentActivity) activity;
+        super.onAttach(activity);
 
+    }
 
 }

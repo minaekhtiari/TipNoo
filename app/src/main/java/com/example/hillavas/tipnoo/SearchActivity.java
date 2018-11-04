@@ -110,7 +110,7 @@ Context cx;
                    chipCloud.addTagsChips(contentLists);
 
 
-                    Toast.makeText(SearchActivity.this,""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(SearchActivity.this,""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
 
                 }
@@ -118,7 +118,7 @@ Context cx;
             }
             @Override
             public void onFailure(Call<TagResults> call, Throwable t) {
-                Toast.makeText(SearchActivity.this,""+t,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(SearchActivity.this,""+t,Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -6,7 +6,7 @@
     android:layout_height="290dp"
     android:layout_marginRight="4dp"
     android:layout_marginLeft="4dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginBottom="16dp"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
@@ -19,8 +19,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="2dp" />
+            android:layout_marginTop="2dp"
+            android:scaleType="fitXY" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,12 +32,12 @@
 
             <ImageView
                 android:id="@+id/bookmark"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="-10dp"
+                android:layout_marginTop="-4dp"
                 android:src="@mipmap/bookmark" />
 
 
@@ -75,25 +75,24 @@
 
                 <ImageView
                     android:id="@+id/view_img"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/like"
-                    android:layout_toLeftOf="@+id/view_count"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                />
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toLeftOf="@+id/view_count"
+                    android:src="@drawable/ic_visibility_black_36dp" />
 
                 <ImageView
 
                     android:id="@+id/like_img"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
                     android:layout_toLeftOf="@+id/like_count"
-                    android:src="@mipmap/like" />
+                    android:src="@drawable/ic_favorite_border_black_36dp" />
 
                 <TextView
                     android:id="@+id/view_count"
@@ -114,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="68dp"
+                    android:layout_marginEnd="77dp"
                     android:layout_marginBottom="10dp"
                     android:padding="3dp"
                     android:text="200"
@@ -128,8 +127,8 @@
                     android:layout_alignTop="@+id/view_img"
                     android:layout_alignEnd="@+id/view_img"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="26dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="40dp"
                     android:layout_marginBottom="10dp"
                     android:text="|" />
                 <!--android:layout_toLeftOf="@+id/share"-->

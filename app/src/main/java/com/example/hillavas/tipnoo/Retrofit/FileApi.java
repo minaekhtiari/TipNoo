@@ -3,6 +3,8 @@ package com.example.hillavas.tipnoo.Retrofit;
 
 
 import com.example.hillavas.tipnoo.Models.ContentResult;
+import com.example.hillavas.tipnoo.Models.LikeDislikeBody;
+import com.example.hillavas.tipnoo.Models.LikeDislikeResults;
 import com.example.hillavas.tipnoo.Models.ResultJsonMemberSignUp;
 import com.example.hillavas.tipnoo.Models.TabResults;
 import com.example.hillavas.tipnoo.Models.TagResults;
@@ -10,6 +12,8 @@ import com.example.hillavas.tipnoo.Models.TagResults;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -47,6 +51,9 @@ public interface FileApi {
 
     @POST("Member/SignUp")
     Call<ResultJsonMemberSignUp> memberSignUp(@Query("mobileNumber")  String appType );
+
+    @POST("Api/Content/LikeOrDisLike")
+    Call<LikeDislikeResults> getLikeOrDislike(@Body LikeDislikeBody likeDislikeBody);
 }
 
 

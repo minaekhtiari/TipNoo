@@ -63,7 +63,7 @@ ListView filterrecyclerView;
                       startActivity(intent);
                       Toast.makeText(FilterActivity.this, categoryId+"Don't has childe", Toast.LENGTH_SHORT).show();
                   }
-                Toast.makeText(FilterActivity.this, categoryId+"", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(FilterActivity.this, categoryId+"", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -28,10 +28,9 @@
         android:id="@+id/search"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/search"
-
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:src="@drawable/ic_search_36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageView
      android:padding="8dp"
@@ -39,8 +38,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:src="@mipmap/filter"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
 
     <FrameLayout

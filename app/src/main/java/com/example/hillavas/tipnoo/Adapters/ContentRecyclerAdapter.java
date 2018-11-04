@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecyclerAdapter.ViewHolder> {
     private ArrayList<ContentList> contentLists;
     Context context;
-    private ItemClickListener mClickListener;
+    private ItemClickListener clickListener;
 
     public  ContentRecyclerAdapter(Context context,ArrayList<ContentList> contentLists){
         this.context=context;
@@ -51,18 +51,18 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
         viewHolder.likecount.setText(contentListPositon.getLikeCount()+"");
         if((contentListPositon.getIsLiked())==true)
         {
-//todo
-            viewHolder.likeimg.setImageResource(R.mipmap.ic_launcher);
+
+            viewHolder.likeimg.setImageResource(R.drawable.ic_favorite_black_36dp);
 
         }else{
-            viewHolder.likeimg.setImageResource(R.mipmap.like);
+            viewHolder.likeimg.setImageResource(R.drawable.ic_favorite_border_black_36dp);
         }
         if((contentListPositon.getIsBookmarked())==true)
         {
-            viewHolder.bookmark.setImageResource(R.mipmap.bookmark);
+            viewHolder.bookmark.setImageResource(R.drawable.ic_bookmark_black_36dp);
         }else{
-//todo
-            viewHolder.bookmark.setImageResource(R.mipmap.bookmark);
+
+            viewHolder.bookmark.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
         }
 
         Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+contentListPositon.getHeaderImageId()).into(viewHolder.contetntImg);
@@ -95,17 +95,25 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-
+            if (clickListener != null) clickListener.onItemClick(view, getAdapterPosition());
+           // Toast.makeText(context,"test"+getAdapterPosition(),Toast.LENGTH_LONG).show();
+            Intent intent=new Intent(context,VideoDetailActivity.class);
+            intent.putExtra("isLike",contentLists.get(getAdapterPosition()).getIsLiked());
+            intent.putExtra("isBookmark",contentLists.get(getAdapterPosition()).getIsBookmarked());
+            intent.putExtra("likeCount",contentLists.get(getAdapterPosition()).getLikeCount());
+            intent.putExtra("viewCount",contentLists.get(getAdapterPosition()).getViewCount());
+            intent.putExtra("videoId",contentLists.get(getAdapterPosition()).getVideoId());
+            intent.putExtra("HeaderImageId",contentLists.get(getAdapterPosition()).getHeaderImageId());
+            intent.putExtra("ContentId",contentLists.get(getAdapterPosition()).getContentId());
+            view.getContext().startActivity(intent);
 
         }
     }
 
     void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
+        this.clickListener = itemClickListener;
     }
     public interface ItemClickListener {
         void onItemClick(View view, int position);
-
     }
 }

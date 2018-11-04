@@ -127,7 +127,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                    mostViewedRecycler.setAdapter(contentRecyclerAdapter);
 
 
-                    Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
 
                 }
@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     selectedRecycler.setAdapter(contentRecyclerAdapter);
 
 
-                    Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
 
                 }
@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -188,7 +188,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 if(response.isSuccessful()){
                     //todo
                     progressDialog.cancel();
-                    //    Toast.makeText(certification.this,"dorosteeeee",Toast.LENGTH_SHORT).show();
+
                   final List <ContentList> contentLists=response.body().getResult();
                     for (int i=0;i<contentLists.size();i++) {
                         String picurl ="http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+( contentLists.get(i).getHeaderImageId());
@@ -227,7 +227,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     },DELAY_MS, PERIOD_MS);
 
                     //   contentLists=response.body().getResult();
-                    Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                  ///  Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
 
                 }
@@ -235,7 +235,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
                 Log.d("---000",t.toString());
             }
         });

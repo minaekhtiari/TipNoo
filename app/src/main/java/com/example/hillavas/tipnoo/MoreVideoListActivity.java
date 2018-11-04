@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.hillavas.tipnoo.Adapters.ContentRecyclerAdapter;
 import com.example.hillavas.tipnoo.Adapters.HomeContentRecyclerAdapter;
 import com.example.hillavas.tipnoo.Models.ContentList;
 import com.example.hillavas.tipnoo.Models.ContentResult;
@@ -30,7 +31,7 @@ public class MoreVideoListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_more_video_list);
 
         morelistvideos=findViewById(R.id.morelist_videos);
-        GridLayoutManager layoutManager = new GridLayoutManager(MoreVideoListActivity.this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(MoreVideoListActivity.this, 1);
         morelistvideos.setLayoutManager(layoutManager);
         Bundle bundle=getIntent().getExtras();
         String requiredList=bundle.getString("requiredList");
@@ -54,7 +55,7 @@ public class MoreVideoListActivity extends AppCompatActivity {
 
 
                     final ArrayList<ContentList> contentLists= (ArrayList<ContentList>) response.body().getResult();
-                    HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(MoreVideoListActivity.this, contentLists);
+                    ContentRecyclerAdapter contentRecyclerAdapter = new ContentRecyclerAdapter(MoreVideoListActivity.this, contentLists);
                     morelistvideos.setAdapter(contentRecyclerAdapter);
 
 
@@ -66,7 +67,7 @@ public class MoreVideoListActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(MoreVideoListActivity.this,""+t,Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(MoreVideoListActivity.this,""+t,Toast.LENGTH_SHORT).show();
 
             }
         });

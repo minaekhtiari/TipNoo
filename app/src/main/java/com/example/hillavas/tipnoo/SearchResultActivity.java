@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.example.hillavas.tipnoo.Adapters.ContentRecyclerAdapter;
 import com.example.hillavas.tipnoo.Adapters.HomeContentRecyclerAdapter;
 import com.example.hillavas.tipnoo.Adapters.SearchContentRecyclerAdapter;
 import com.example.hillavas.tipnoo.Models.ContentList;
@@ -48,20 +49,20 @@ public class SearchResultActivity extends AppCompatActivity {
                     response.body().getIsSuccessful();
                     response.body().getResult();
                     final ArrayList <ContentList> contentLists= (ArrayList<ContentList>) response.body().getResult();
-                    SearchContentRecyclerAdapter contentRecyclerAdapter = new SearchContentRecyclerAdapter(SearchResultActivity.this, contentLists);
+                    ContentRecyclerAdapter contentRecyclerAdapter = new ContentRecyclerAdapter(SearchResultActivity.this, contentLists);
                     searchrecyclerView.setAdapter(contentRecyclerAdapter);
 
 
-                    Toast.makeText(SearchResultActivity.this,""+ response.isSuccessful(),Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(SearchResultActivity.this,""+ response.isSuccessful(),Toast.LENGTH_SHORT).show();
 
                 }else{
-                    Toast.makeText(SearchResultActivity.this,""+ response.isSuccessful(),Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(SearchResultActivity.this,""+ response.isSuccessful(),Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(SearchResultActivity.this,""+t,Toast.LENGTH_SHORT).show();
+               // Toast.makeText(SearchResultActivity.this,""+t,Toast.LENGTH_SHORT).show();
 
             }
         });

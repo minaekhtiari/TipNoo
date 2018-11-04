@@ -5,12 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".VideoDetailActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:background="#9fffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:id="@+id/toolbar_layout"
+                android:background="#9fffffff"
+                android:minHeight="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+
+                <ImageView
+                    android:padding="8dp"
+                    android:id="@+id/back_img"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_backspace_36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp" />
+            </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
     <LinearLayout
+        android:layout_below="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -40,85 +63,76 @@
                 android:src="@mipmap/play" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
 
             <ImageView
                 android:id="@+id/detail_bookmark_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="76dp"
-                android:layout_marginTop="10dp"
+                android:padding="8dp"
 
-                android:src="@drawable/ic_bookmark_24dp" />
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_bookmark_border_black_36dp" />
 
             <ImageView
+
                 android:id="@+id/detail_like_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/detail_bookmark_img"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="232dp"
-                android:layout_marginTop="10dp"
-                android:padding="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginLeft="20dp"
                 android:src="@drawable/ic_favorite_border_black_36dp" />
 
+            <TextView
+
+                android:id="@+id/detail_like_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                android:text="2000" />
+
             <ImageView
+
                 android:id="@+id/detail_view_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/detail_bookmark_img"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="160dp"
-                android:layout_marginTop="10dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_eye_black_24dp" />
+
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_visibility_black_36dp" />
+            <TextView
+
+                android:id="@+id/detail_view_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                         android:padding="8dp"
+                android:text="1000" />
 
             <ImageView
+
                 android:id="@+id/detail_share_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/detail_bookmark_img"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="299dp"
-
-                android:layout_marginTop="10dp"
                 android:padding="8dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_share_36dp" />
 
-                android:src="@drawable/ic_share_24dp" />
 
-            <TextView
-                android:id="@+id/detail_view_count"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/detail_view_img"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="146dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:text="1000" />
 
-            <TextView
-                android:id="@+id/detail_like_count"
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:layout_below="@+id/detail_like_img"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="220dp"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:text="2000" />
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

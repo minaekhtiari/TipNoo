@@ -36,7 +36,7 @@ public class FilterLeafActivity extends AppCompatActivity {
 
       getFilteredLeafList();
 
-        Toast.makeText(FilterLeafActivity.this, categoryId+"Don't has childe", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(FilterLeafActivity.this, categoryId+"Don't has childe", Toast.LENGTH_SHORT).show();
     }
 
     private void getFilteredLeafList() {
