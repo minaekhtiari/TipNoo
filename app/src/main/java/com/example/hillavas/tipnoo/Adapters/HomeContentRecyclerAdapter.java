@@ -3,7 +3,6 @@ package com.example.hillavas.tipnoo.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -14,31 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.hillavas.tipnoo.Models.ContentList;
+import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.R;
 import com.example.hillavas.tipnoo.VideoDetailActivity;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 //import com.example.hillavas.bottomnavigationview.R;
 
 
 public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContentRecyclerAdapter.ViewHolder> {
-    private ArrayList<ContentList> contentLists;
+    private ArrayList<VideoContentObject> videoContentObjects;
     Context context;
 
     private ItemClickListener mClickListener;
 
-    public HomeContentRecyclerAdapter(Context context, ArrayList<ContentList> contentLists){
+    public HomeContentRecyclerAdapter(Context context, ArrayList<VideoContentObject> videoContentObjects){
         this.context=context;
-        this.contentLists=contentLists;
+        this.videoContentObjects = videoContentObjects;
 
     }
     @NonNull
@@ -51,10 +46,10 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
-        ContentList contentListPositon=contentLists.get(position);
-        viewHolder.title.setText(contentListPositon.getSubject());
+        VideoContentObject videoContentObjectPositon = videoContentObjects.get(position);
+        viewHolder.title.setText(videoContentObjectPositon.getSubject());
 
-       Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+contentListPositon.getHeaderImageId()).into(new Target(){
+       Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+ videoContentObjectPositon.getHeaderImageId()).into(new Target(){
 
            @Override
            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -78,7 +73,7 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
 
     @Override
     public int getItemCount() {
-       return contentLists.size();
+       return videoContentObjects.size();
 
     }
 
@@ -100,15 +95,17 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-         //   Toast.makeText(context,"test"+getAdapterPosition(),Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(context,VideoDetailActivity.class);
-            intent.putExtra("isLike",contentLists.get(getAdapterPosition()).getIsLiked());
-            intent.putExtra("isBookmark",contentLists.get(getAdapterPosition()).getIsBookmarked());
-            intent.putExtra("likeCount",contentLists.get(getAdapterPosition()).getLikeCount());
-            intent.putExtra("viewCount",contentLists.get(getAdapterPosition()).getViewCount());
-            intent.putExtra("videoId",contentLists.get(getAdapterPosition()).getVideoId());
-            intent.putExtra("HeaderImageId",contentLists.get(getAdapterPosition()).getHeaderImageId());
-            intent.putExtra("ContentId",contentLists.get(getAdapterPosition()).getContentId());
+            // Toast.makeText(context,"test"+getAdapterPosition(),Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, VideoDetailActivity.class);
+            // Bundle bundle = new Bundle();
+            intent.putExtra("video_detail",videoContentObjects.get(getAdapterPosition()));
+//            intent.putExtra("isLike",videoContentObjects.get(getAdapterPosition()).getIsLiked());
+//            intent.putExtra("isBookmark",videoContentObjects.get(getAdapterPosition()).getIsBookmarked());
+//            intent.putExtra("likeCount",videoContentObjects.get(getAdapterPosition()).getLikeCount());
+//            intent.putExtra("viewCount",videoContentObjects.get(getAdapterPosition()).getViewCount());
+//            intent.putExtra("videoId",videoContentObjects.get(getAdapterPosition()).getVideoId());
+//            intent.putExtra("HeaderImageId",videoContentObjects.get(getAdapterPosition()).getHeaderImageId());
+//            intent.putExtra("ContentId",videoContentObjects.get(getAdapterPosition()).getContentId());
             view.getContext().startActivity(intent);
 
         }

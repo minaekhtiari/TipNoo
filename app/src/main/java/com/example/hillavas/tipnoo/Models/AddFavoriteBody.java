@@ -1,6 +1,6 @@
 package com.example.hillavas.tipnoo.Models;
 
-public class LikeDislikeBody {
+public class AddFavoriteBody {
    public String token;
  public  int contentId;
 

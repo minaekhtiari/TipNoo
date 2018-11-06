@@ -1,7 +1,6 @@
 package com.example.hillavas.tipnoo.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -12,11 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 //import com.example.hillavas.bottomnavigationview.R;
 import com.example.hillavas.tipnoo.Adapters.ContentRecyclerAdapter;
-import com.example.hillavas.tipnoo.Models.ContentList;
+import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.Models.ContentResult;
 import com.example.hillavas.tipnoo.R;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
@@ -31,19 +29,34 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
+
 public class SubCategoryFragment extends Fragment {
     RecyclerView recyclerContent;
     int categoryId;
     TextView textView2;
     FragmentActivity activity;
-    public ArrayList<ContentList> contentLists;
+    public ArrayList<VideoContentObject> videoContentObjects;
     ContentRecyclerAdapter contentRecyclerAdapter;
 
-    public ArrayList<ContentList> rcyclDatas;
+    public ArrayList<VideoContentObject> rcyclDatas;
     public SubCategoryFragment() {
         // Required empty public constructor
     }
 
+//    @Override
+//    public void setMenuVisibility(boolean menuVisible) {
+//        super.setMenuVisibility(menuVisible);
+//        if(menuVisible){
+//            getContent();
+//        }
+//    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getContent();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +74,7 @@ public class SubCategoryFragment extends Fragment {
         recyclerContent.setHasFixedSize(true);
         recyclerContent.setLayoutManager(lLayout);
 //        textView2=v.findViewById(R.id.textView2);
-        getContent();
+
         return v;
     }
 
@@ -81,9 +94,9 @@ public class SubCategoryFragment extends Fragment {
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
               response.body().getIsSuccessful();
                 if(response.isSuccessful()){
-                   List<ContentList> Lists=response.body().getResult();
-                   contentLists.clear();
-                   contentLists.addAll(Lists);
+                   List<VideoContentObject> Lists=response.body().getResult();
+                   videoContentObjects.clear();
+                   videoContentObjects.addAll(Lists);
                     contentRecyclerAdapter.notifyDataSetChanged();
                   //  Toast.makeText(getContext(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000",response.body().getIsSuccessful().toString());
@@ -100,8 +113,8 @@ public class SubCategoryFragment extends Fragment {
             }
         });
 
-        contentLists=new ArrayList<>();
-        contentRecyclerAdapter = new ContentRecyclerAdapter(getContext(), contentLists);
+        videoContentObjects =new ArrayList<>();
+        contentRecyclerAdapter = new ContentRecyclerAdapter(getContext(), videoContentObjects);
         recyclerContent.setAdapter(contentRecyclerAdapter);
     }
 

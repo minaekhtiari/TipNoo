@@ -9,9 +9,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <RelativeLayout
                 android:id="@+id/toolbar_layout"
                 android:background="?attr/colorPrimary"
@@ -36,16 +34,24 @@
                     android:tint="#ffffff"
                     android:src="@drawable/ic_backspace_36dp"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    style="?android:attr/actionButtonStyle"/>
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
     <ListView
         android:layout_below="@+id/app_bar"
-        android:layout_margin="0dp"
+
         android:id="@+id/filter_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </ListView>
+
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_loading_fail" />
 </RelativeLayout>

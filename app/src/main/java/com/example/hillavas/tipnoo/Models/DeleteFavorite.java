@@ -3,10 +3,7 @@ package com.example.hillavas.tipnoo.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class ContentResult {
-
+public class DeleteFavorite {
     @SerializedName("IsSuccessful")
     @Expose
     private Boolean isSuccessful;
@@ -15,7 +12,7 @@ public class ContentResult {
     private Object message;
     @SerializedName("Result")
     @Expose
-    private List<VideoContentObject> result = null;
+    private Boolean result;
 
     public Boolean getIsSuccessful() {
         return isSuccessful;
@@ -33,12 +30,11 @@ public class ContentResult {
         this.message = message;
     }
 
-    public List<VideoContentObject> getResult() {
+    public Boolean getResult() {
         return result;
     }
 
-    public void setResult(List<VideoContentObject> result) {
+    public void setResult(Boolean result) {
         this.result = result;
     }
-
 }

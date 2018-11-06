@@ -28,4 +28,6 @@
     <string name="incorrectCode">کد وارد شده اشتباه است</string>
     <string name="search_txt">جستجو</string>
     <string name="filter_txt">فیلتر</string>
+    <string name="serverError">خطایی در سرور رخ داده است.</string>
+    <string name="try_again_button">تلاش مجدد</string>
 </resources>

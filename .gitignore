@@ -8,3 +8,6 @@
 /build
 /captures
 .externalNativeBuild
+app/fabric.properties
+jiaozivideoplayer-6.2.7/jiaozivideoplayer-6.2.7.aar
+jiaozivideoplayer-6.2.7/build.gradle

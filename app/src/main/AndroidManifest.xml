@@ -64,6 +64,9 @@
             android:screenOrientation="portrait"  />
         <activity android:name=".FilterLeafActivity"
             android:screenOrientation="portrait"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="32384587bd1a5d0cfcdb12166566ce8d161e7ff8" />
     </application>
 
 </manifest>

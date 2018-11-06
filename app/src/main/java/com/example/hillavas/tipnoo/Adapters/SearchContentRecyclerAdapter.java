@@ -7,25 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.hillavas.tipnoo.Models.ContentList;
-import com.example.hillavas.tipnoo.Models.TagList;
+import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchContentRecyclerAdapter extends RecyclerView.Adapter<SearchContentRecyclerAdapter.ViewHolder> {
-    private ArrayList<ContentList> contentLists;
+    private ArrayList<VideoContentObject> videoContentObjects;
     Context context;
     private HomeContentRecyclerAdapter.ItemClickListener mClickListener;
 
 
 
-    public SearchContentRecyclerAdapter(Context context, ArrayList<ContentList> contentLists) {
+    public SearchContentRecyclerAdapter(Context context, ArrayList<VideoContentObject> videoContentObjects) {
         this.context=context;
-        this.contentLists=contentLists;
+        this.videoContentObjects = videoContentObjects;
     }
 
     @NonNull
@@ -38,13 +35,13 @@ public class SearchContentRecyclerAdapter extends RecyclerView.Adapter<SearchCon
 
     @Override
     public void onBindViewHolder(@NonNull SearchContentRecyclerAdapter.ViewHolder holder, int position) {
-        ContentList contentListPositon=contentLists.get(position);
-        holder.title.setText(contentListPositon.getSubject());
+        VideoContentObject videoContentObjectPositon = videoContentObjects.get(position);
+        holder.title.setText(videoContentObjectPositon.getSubject());
     }
 
     @Override
     public int getItemCount() {
-        return contentLists.size();
+        return videoContentObjects.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -64,7 +61,7 @@ public class SearchContentRecyclerAdapter extends RecyclerView.Adapter<SearchCon
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
-          // int tagId=contentLists.get(getAdapterPosition()).getValue();
+          // int tagId=videoContentObjects.get(getAdapterPosition()).getValue();
            // Toast.makeText(context,tagId+"",Toast.LENGTH_LONG).show();
         }
     }

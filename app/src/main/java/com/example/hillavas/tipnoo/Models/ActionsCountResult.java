@@ -3,19 +3,17 @@ package com.example.hillavas.tipnoo.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class ContentResult {
+public class ActionsCountResult {
 
     @SerializedName("IsSuccessful")
     @Expose
     private Boolean isSuccessful;
     @SerializedName("Message")
     @Expose
-    private Object message;
+    private String message;
     @SerializedName("Result")
     @Expose
-    private List<VideoContentObject> result = null;
+    private Integer result;
 
     public Boolean getIsSuccessful() {
         return isSuccessful;
@@ -25,20 +23,19 @@ public class ContentResult {
         this.isSuccessful = isSuccessful;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Object message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public List<VideoContentObject> getResult() {
+    public Integer getResult() {
         return result;
     }
 
-    public void setResult(List<VideoContentObject> result) {
+    public void setResult(Integer result) {
         this.result = result;
     }
-
 }

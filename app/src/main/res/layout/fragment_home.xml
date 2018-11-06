@@ -2,11 +2,14 @@
 <FrameLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="?attr/actionBarSize"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -19,6 +22,7 @@
 
                 >
                 <android.support.v4.view.ViewPager
+
                    android:id="@+id/Gallerypager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -29,9 +33,9 @@
                 <me.relex.circleindicator.CircleIndicator
                     app:ci_drawable="@drawable/bg_red"
                     android:id="@+id/indicator"
-                    android:background="#9fffffff"
+
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentBottom="true" />
             </RelativeLayout>
             <ScrollView
@@ -60,7 +64,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:padding="8dp"
                                 android:layout_marginTop="20dp"
-                                android:textColor="#000"
+                                android:textColor="#8e8d8d"
                                 android:textSize="12sp"
                                 android:text="@string/selected_videos"
                                 />
@@ -70,10 +74,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
-                                android:textColor="#000"
+                                android:textColor="#c43423"
                                 android:padding="8dp"
                                 android:layout_alignParentStart="true"
                                 android:text="@string/more_listitem"
+
                                />
                                 <!--fontPath="fonts/iransans.ttf" />-->
                             <android.support.v7.widget.RecyclerView
@@ -99,7 +104,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:padding="8dp"
                                 android:layout_marginTop="20dp"
-                                android:textColor="#000"
+                                android:textColor="#8e8d8d"
                                 android:textSize="12sp"
                                 android:text="@string/mostviewed_videos"
 
@@ -110,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
-                                android:textColor="#000"
+                                android:textColor="#c43423"
                                 android:padding="8dp"
                                 android:layout_alignParentStart="true"
                                 android:text="@string/more_listitem"
@@ -120,6 +125,7 @@
                                 android:id="@+id/mostviewed_videos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="70dp"
                                 />
                         </RelativeLayout>
 
@@ -152,5 +158,10 @@
 
             </ScrollView>
         </LinearLayout>
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_loading_fail" />
     </RelativeLayout>
 </FrameLayout>

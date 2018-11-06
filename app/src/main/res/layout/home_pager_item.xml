@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <ImageView
 
         android:id="@+id/image_home_viewpager"
@@ -12,24 +11,20 @@
 
         />
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:background="#9fffffff"
-    android:layout_alignParentBottom="true"
-    android:layout_marginBottom="30dp"
-    >
+
     <TextView
 
-        android:textSize="12dp"
-        android:textColor="#000000"
-        android:gravity="center"
+        android:textSize="19dp"
+        android:textColor="#f17768"
+        android:gravity="right"
         android:id="@+id/textview_home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="13dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="32dp"
+        android:layout_marginRight="16dp"
+
 
 
        />
-</RelativeLayout>
 </RelativeLayout>

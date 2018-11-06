@@ -1,9 +1,16 @@
 package com.example.hillavas.tipnoo.Models;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ContentList {
+import java.io.Serializable;
+
+public class VideoContentObject implements Serializable {
+
+    public VideoContentObject() {
+    }
 
     @SerializedName("ContentId")
     @Expose

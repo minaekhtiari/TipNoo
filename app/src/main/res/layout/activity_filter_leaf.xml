@@ -5,11 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.hillavas.tipnoo.FilterLeafActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/toolbar_layout"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+                <TextView
+                    android:text="@string/filter_txt"
+                    android:textColor="#FFF"
+                    android:id="@+id/toolbar_title"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:padding="8dp"
+                    android:id="@+id/filter_result_back"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:tint="#ffffff"
+                    android:src="@drawable/ic_backspace_36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    style="?android:attr/actionButtonStyle"/>
+            </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
 <android.support.v7.widget.RecyclerView
-    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_below="@+id/app_bar"
+
     android:id="@+id/filter_leaf_recycler"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 </android.support.v7.widget.RecyclerView>
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_loading_fail" />
 </RelativeLayout>

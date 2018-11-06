@@ -48,14 +48,14 @@ public View getView(int position, View convertView, ViewGroup parent) {
         }
         }
 //   RecyclerView.Adapter<FilterContentRecyclerAdapter.ViewHolder> {
-//    private List<TabList> contentLists;
+//    private List<TabList> videoContentObjects;
 //    Context context;
 //    RecyclerView recyclerView;
 //    private HomeContentRecyclerAdapter.ItemClickListener mClickListener;
 //
-//    public FilterContentRecyclerAdapter(Context context, List<TabList> contentLists) {
+//    public FilterContentRecyclerAdapter(Context context, List<TabList> videoContentObjects) {
 //        this.context=context;
-//        this.contentLists=contentLists;
+//        this.videoContentObjects=videoContentObjects;
 //    }
 //
 //    @NonNull
@@ -68,14 +68,14 @@ public View getView(int position, View convertView, ViewGroup parent) {
 //
 //    @Override
 //    public void onBindViewHolder(@NonNull FilterContentRecyclerAdapter.ViewHolder holder, int position) {
-//        TabList contentListPositon=contentLists.get(position);
+//        TabList contentListPositon=videoContentObjects.get(position);
 //        holder.title.setText(contentListPositon.getName());
 //
 //    }
 //
 //    @Override
 //    public int getItemCount() {
-//        return contentLists.size();
+//        return videoContentObjects.size();
 //    }
 //
 //    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -94,14 +94,14 @@ public View getView(int position, View convertView, ViewGroup parent) {
 //        public void onClick(View view) {
 //            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 //
-//          int categoryId= contentLists.get(getAdapterPosition()).getCategoryId();
+//          int categoryId= videoContentObjects.get(getAdapterPosition()).getCategoryId();
 //            Toast.makeText(context,categoryId+"",Toast.LENGTH_LONG).show();
-////            if( contentLists.get(getAdapterPosition()).getHasChild()==true){
+////            if( videoContentObjects.get(getAdapterPosition()).getHasChild()==true){
 ////
-////                if(contentLists.get(getAdapterPosition()).getParentId()!=null){
+////                if(videoContentObjects.get(getAdapterPosition()).getParentId()!=null){
 ////                       getAllContent();
 ////                }else{
-////                    contentLists.get(getAdapterPosition()).getCategoryId();
+////                    videoContentObjects.get(getAdapterPosition()).getCategoryId();
 ////                }
 ////            }
 //
@@ -123,8 +123,8 @@ public View getView(int position, View convertView, ViewGroup parent) {
 //            public void onResponse(retrofit2.Call<TabResults> call, Response<TabResults> response) {
 //
 //                if(response.isSuccessful()){
-//                    List<TabList> contentLists=  response.body().getResult();
-//                    FilterContentRecyclerAdapter contentRecyclerAdapter = new FilterContentRecyclerAdapter(context, contentLists);
+//                    List<TabList> videoContentObjects=  response.body().getResult();
+//                    FilterContentRecyclerAdapter contentRecyclerAdapter = new FilterContentRecyclerAdapter(context, videoContentObjects);
 //                  //  filterrecyclerView.setAdapter(contentRecyclerAdapter);
 //
 //

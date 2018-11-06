@@ -28,18 +28,22 @@
         android:id="@+id/search"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/ic_search_36dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:src="@drawable/ic_search_24dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:tint="@color/md_white"
+        style="?android:attr/actionButtonStyle"/>
 
     <ImageView
      android:padding="8dp"
         android:id="@+id/filter"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:src="@mipmap/filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:src="@drawable/ic_action_filter"
+        android:tint="@color/md_white"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        style="?android:attr/actionButtonStyle"/>
 </RelativeLayout>
 
     <FrameLayout

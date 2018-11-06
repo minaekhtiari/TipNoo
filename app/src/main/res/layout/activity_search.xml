@@ -10,9 +10,7 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
             <RelativeLayout
                 android:id="@+id/toolbar_layout"
                 android:background="?attr/colorPrimary"
@@ -37,9 +35,10 @@
                     android:tint="#ffffff"
                     android:src="@drawable/ic_backspace_36dp"
                     android:layout_width="48dp"
-                    android:layout_height="48dp" />
+                    android:layout_height="48dp"
+                    style="?android:attr/actionButtonStyle"/>
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 <RelativeLayout
 
@@ -47,7 +46,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp">
     <com.google.android.flexbox.FlexboxLayout
-        android:layoutDirection="rtl"
+
         app:flexDirection="row_reverse"
        android:foregroundGravity="right"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -74,4 +73,10 @@
      android:layout_margin="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_loading_fail" />
 </RelativeLayout>

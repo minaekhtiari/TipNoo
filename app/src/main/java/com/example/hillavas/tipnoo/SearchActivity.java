@@ -6,26 +6,21 @@ import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
-import com.example.hillavas.tipnoo.Adapters.HomeContentRecyclerAdapter;
-import com.example.hillavas.tipnoo.Adapters.SearchContentRecyclerAdapter;
-import com.example.hillavas.tipnoo.Models.ContentList;
-import com.example.hillavas.tipnoo.Models.ContentResult;
-import com.example.hillavas.tipnoo.Models.TabList;
-import com.example.hillavas.tipnoo.Models.TabResults;
 import com.example.hillavas.tipnoo.Models.TagList;
 import com.example.hillavas.tipnoo.Models.TagResults;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
-import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
@@ -34,8 +29,6 @@ import java.util.List;
 
 import fisk.chipcloud.ChipCloud;
 import fisk.chipcloud.ChipCloudConfig;
-import fisk.chipcloud.ChipDeletedListener;
-import fisk.chipcloud.ChipListener;
 import fisk.chipcloud.ToggleChip;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,7 +37,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static android.view.View.*;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
 RecyclerView searchrecyclerView;
 Context cx;
     TagCloudView chipCloud;
@@ -54,10 +47,30 @@ Context cx;
     FlexboxLayout flexboxLayout;
     String[] demoArray;
     ArrayList<String> arrayList ;
+    ImageView searchBack;
+
+    RelativeLayout relativeLayoutFail,relativeLayoutLoading;
+    TextView lblFailMessage;
+    Button btnFailTryAgain;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        searchBack=findViewById(R.id.search_back);
+        searchBack.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        relativeLayoutFail = (RelativeLayout) findViewById(R.id.layout_fail);
+        relativeLayoutLoading=(RelativeLayout)findViewById(R.id.layout_loading);
+        lblFailMessage=findViewById(R.id.lbl_fail);
+        btnFailTryAgain=findViewById(R.id.btn_fail_try_again);
+        btnFailTryAgain.setOnClickListener(this);
 
        getAllTags();
 
@@ -93,7 +106,7 @@ Context cx;
 }
 
     private void getAllTags() {
-
+        loadingOrFail(true, true);
         FileApi fileApi = RetroClient.getApiService();
         final Call<TagResults> contentResultCall=fileApi.getSearchTags();
         contentResultCall.enqueue(new Callback<TagResults>() {
@@ -103,22 +116,28 @@ Context cx;
 
 
                 if(response.isSuccessful()){
+                      if(response.body().getIsSuccessful()) {
+                          arrayList = new ArrayList<String>();
+                          contentLists = response.body().getResult();
 
-                    arrayList = new ArrayList<String>();
-                    contentLists=  response.body().getResult();
-
-                   chipCloud.addTagsChips(contentLists);
-
-
-                  //  Toast.makeText(SearchActivity.this,""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
-                    Log.d("---000",response.body().getIsSuccessful().toString());
-
+                          chipCloud.addTagsChips(contentLists);
+                          loadingOrFail(true, false);
+                      }else
+                      {
+                          loadingOrFail(false, true);//fail layout visible
+                          lblFailMessage.setText(String.valueOf(response.body().getMessage()));
+                      }
+                }else
+                {
+                    loadingOrFail(false, true);//fail layout visible
+                    lblFailMessage.setText(getString(R.string.serverError));
                 }
 
             }
             @Override
             public void onFailure(Call<TagResults> call, Throwable t) {
-              //  Toast.makeText(SearchActivity.this,""+t,Toast.LENGTH_SHORT).show();
+                loadingOrFail(false, true);//fail layout visible
+                lblFailMessage.setText(getString(R.string.noConnection));
 
             }
         });
@@ -129,6 +148,47 @@ Context cx;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.btn_fail_try_again:
+
+                getAllTags();
+                break;
+
+        }
+    }
+
+
+    void loadingOrFail(boolean hasLoading, boolean showing) {
+        if (hasLoading)//if is loading layout
+        {
+            relativeLayoutFail.setVisibility(View.INVISIBLE);
+            //layout fail hidden gone
+            if (showing) {
+                relativeLayoutLoading.setVisibility(View.VISIBLE);
+                //layout laoding visible
+
+            } else {
+                relativeLayoutLoading.setVisibility(View.INVISIBLE);
+                //layout loading hidden
+            }
+        } else {// if is fail layout
+
+            relativeLayoutLoading.setVisibility(View.INVISIBLE);
+            //layout loadign hidden
+            if (showing) {
+                relativeLayoutFail.setVisibility(View.VISIBLE);
+                //layout fail visible
+            } else {
+                relativeLayoutFail.setVisibility(View.INVISIBLE);
+
+                //layout fail hidden
+            }
+        }
     }
     public class TagCloudView extends ChipCloud {
 
@@ -178,17 +238,6 @@ Context cx;
             return -1;
         }
 
-//        private boolean keepLastOneCheck(View view) {
-//            List<Integer> selectedTagIndex = getSelectedTagIndex();
-//            return !(selectedTagIndex.size() == 1 && selectedTagIndex.contains(getIndexByView(view)));
-//        }
 
-//        @Override
-//        public void onClick(View view) {
-//            if (!keepLastOneCheck(view)) {
-//                return;
-//            }
-//            super.onClick(view);
-//        }
     }
 }
