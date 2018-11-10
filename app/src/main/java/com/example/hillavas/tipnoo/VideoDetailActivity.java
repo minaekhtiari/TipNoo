@@ -80,10 +80,16 @@ JzvdStd videoview;
 
 //        Picasso.with(VideoDetailActivity.this).load(
 //                "http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+videoContentObject.teaserId).into(videoImg);
-        videoview.setUp(("http://79.175.138.77:7091/file/getfile?FileType=video&fileid="+videoContentObject.getVideoId())
-                ,"", JzvdStd.SCREEN_WINDOW_NORMAL );
+        String.format(RetroClient.FILE_URL,"video",videoContentObject.getVideoId());
+        videoview.setUp(String.format(RetroClient.FILE_URL,"video",videoContentObject.getVideoId()),"",JzvdStd.SCREEN_WINDOW_NORMAL);
+
+
+     //   videoview.setUp(("http://79.175.138.77:7091/file/getfile?FileType=video&fileid="+videoContentObject.getVideoId())
+          //      ,"", JzvdStd.SCREEN_WINDOW_NORMAL );
         //videoview.thumbImageView.setImageResource(R.drawable.ic_bookmark_border_black_36dp);//"http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+teaserId);
          videoview.thumbImageView.setImageURI(Uri.parse("http://cdn.time.ir/Content/media/image/2018/08/61_orig.png"));
+
+
 
 
 

@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetroClient {
     private static final String ROOT_URL = "http://79.175.138.95:1010/";
 
+     public static String FILE_URL="http://79.175.138.77:7091/file/getfile?FileType=%s&fileid=%s";
 
     public RetroClient() {
 
