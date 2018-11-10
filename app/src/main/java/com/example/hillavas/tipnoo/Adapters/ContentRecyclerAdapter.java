@@ -15,6 +15,7 @@ import android.widget.TextView;
 //import com.example.hillavas.bottomnavigationview.R;
 import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.R;
+import com.example.hillavas.tipnoo.Tools.PersianUtils;
 import com.example.hillavas.tipnoo.VideoDetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -44,9 +45,11 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int position) {
         VideoContentObject videoContentObjectPositon = videoContentObjects.get(position);
+
+        PersianUtils persianUtils=new PersianUtils();
         viewHolder.title.setText(videoContentObjectPositon.getSubject());
-        viewHolder.viewcount.setText(videoContentObjectPositon.getViewCount() + "");
-        viewHolder.likecount.setText(videoContentObjectPositon.getLikeCount() + "");
+        viewHolder.viewcount.setText(persianUtils.toFarsi(videoContentObjectPositon.getViewCount()+"" ));
+        viewHolder.likecount.setText(persianUtils.toFarsi(videoContentObjectPositon.getLikeCount() + ""));
         if ((videoContentObjectPositon.getIsLiked()) == true) {
 
             viewHolder.likeimg.setImageResource(R.drawable.ic_favorite_black_36dp);

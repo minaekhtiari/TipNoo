@@ -18,6 +18,7 @@ import com.example.hillavas.tipnoo.Models.LikeDislikeResults;
 import com.example.hillavas.tipnoo.Models.ActionsCountResult;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
+import com.example.hillavas.tipnoo.Tools.PersianUtils;
 
 import java.util.List;
 
@@ -61,10 +62,10 @@ JzvdStd videoview;
 
 
         videoContentObject= (VideoContentObject) getIntent().getSerializableExtra("video_detail");
-
+        PersianUtils persianUtils=new PersianUtils();
         toolbarTitle.setText(videoContentObject.getSubject());
-        likeTxt.setText(String.valueOf(videoContentObject.getLikeCount()));
-       viewTxt.setText(String.valueOf(videoContentObject.getViewCount()));
+        likeTxt.setText(persianUtils.toFarsi(String.valueOf(videoContentObject.getLikeCount())));
+       viewTxt.setText(persianUtils.toFarsi(String.valueOf(videoContentObject.getViewCount())));
         if(videoContentObject.getIsLiked()==true){
             likeImg.setImageResource(R.drawable.ic_favorite_black_36dp);
         }else{

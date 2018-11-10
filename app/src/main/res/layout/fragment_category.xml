@@ -21,6 +21,7 @@
         android:textDirection="rtl"
         fontPath="fonts/iransans.ttf"
         app:tabSelectedTextColor="#ffffff"
+
         />
 
 
@@ -29,6 +30,7 @@
     <android.support.v4.view.ViewPager
         android:visibility="gone"
         android:id="@+id/pager"
+        android:layout_marginBottom="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
