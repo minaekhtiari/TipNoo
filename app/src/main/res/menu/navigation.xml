@@ -2,32 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@mipmap/home"
-        android:title="@string/title_home"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/navigation_home"-->
+        <!--android:icon="@mipmap/home"-->
+        <!--android:title="@string/title_home"-->
+        <!--app:showAsAction="never"/>-->
 
-    <item
-        android:id="@+id/navigation_perfume"
-        android:icon="@mipmap/perfume"
-        android:title="@string/title_perfume"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/navigation_perfume"-->
+        <!--android:icon="@mipmap/perfume"-->
+        <!--android:title="@string/title_perfume"-->
+        <!--app:showAsAction="never"/>-->
 
-    <item
-        android:id="@+id/navigation_trimming"
-        android:icon="@mipmap/trimm"
-        android:title="@string/title_trimmingHair"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/navigation_style"
-        android:icon="@mipmap/style"
-        android:title="@string/title_style"
-        app:showAsAction="never"/>
-    <item
-        android:id="@+id/navigation_makeup"
-        android:icon="@mipmap/makeup"
-        android:title="@string/title_makeup"
-        app:showAsAction="never"/>
+    <!--<item-->
+        <!--android:id="@+id/navigation_trimming"-->
+        <!--android:icon="@mipmap/trimm"-->
+        <!--android:title="@string/title_trimmingHair"-->
+        <!--app:showAsAction="never"/>-->
+    <!--<item-->
+        <!--android:id="@+id/navigation_style"-->
+        <!--android:icon="@mipmap/style"-->
+        <!--android:title="@string/title_style"-->
+        <!--app:showAsAction="never"/>-->
+    <!--<item-->
+        <!--android:id="@+id/navigation_makeup"-->
+        <!--android:icon="@mipmap/makeup"-->
+        <!--android:title="@string/title_makeup"-->
+        <!--app:showAsAction="never"/>-->
 
 </menu>

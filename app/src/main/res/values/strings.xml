@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TipNoo</string>
-    <string name="title_home">صفحه اصلی</string>
+    <string name="title_home">خانه</string>
     <string name="title_perfume">عطر</string>
     <string name="title_trimmingHair"> پیرایش</string>
     <string name="title_style">تیپ و استایل</string>

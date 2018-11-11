@@ -203,7 +203,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         loadingOrFail(true, true);
 
         FileApi fileApi = RetroClient.getApiService();
-        final Call<ContentResult> contentResultCall = fileApi.getContent("007b428d-b807-4ccd-a3a8-afdcc0f18d0b", 0, 1, 10, "LastItem");
+        final Call<ContentResult> contentResultCall = fileApi.getContent("007b428d-b807-4ccd-a3a8-afdcc0f18d0b",
+                0, 1, 10, "LastItem");
         contentResultCall.enqueue(new Callback<ContentResult>() {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {

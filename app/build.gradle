@@ -90,5 +90,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true;
     }
+//ahbottomnavigation
+    implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
 
 }

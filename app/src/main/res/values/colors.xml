@@ -3,4 +3,9 @@
     <color name="colorPrimary">#c43423</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ffffff</color>
+
+
+    <array name="grey">
+        <item>#59beaf</item>
+    </array>
 </resources>

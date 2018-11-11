@@ -52,7 +52,17 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public void onResume() {
         super.onResume();
-        getContent();
+          getContent();
+//        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+
+
+        // Reload current fragment
+//        Fragment frg = null;
+//        frg = getSupportFragmentManager().findFragmentByTag("Your_Fragment_TAG");
+//        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        ft.detach(frg);
+//        ft.attach(frg);
+//        ft.commit();
     }
 
     @Override
@@ -72,7 +82,6 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
         recyclerContent.setHasFixedSize(true);
         recyclerContent.setLayoutManager(lLayout);
         swipeContainer = v.findViewById(R.id.swipeContainer);
-
         swipeContainer.setOnRefreshListener(this);
 
 
