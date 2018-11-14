@@ -49,7 +49,7 @@ public class HomeContentRecyclerAdapter extends RecyclerView.Adapter<HomeContent
         VideoContentObject videoContentObjectPositon = videoContentObjects.get(position);
         viewHolder.title.setText(videoContentObjectPositon.getSubject());
 
-       Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+ videoContentObjectPositon.getHeaderImageId()).into(new Target(){
+       Picasso.with(context).load(videoContentObjectPositon.getHeaderImageFileAddress()).into(new Target(){
 
            @Override
            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {

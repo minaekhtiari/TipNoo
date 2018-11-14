@@ -64,7 +64,7 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
             viewHolder.bookmark.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
         }
 
-        Picasso.with(context).load("http://79.175.138.77:7091/file/getfile?FileType=image&fileid=" + videoContentObjectPositon.getHeaderImageId()).into(viewHolder.contetntImg);
+        Picasso.with(context).load(videoContentObjectPositon.getHeaderImageFileAddress()).into(viewHolder.contetntImg);
 
     }
 

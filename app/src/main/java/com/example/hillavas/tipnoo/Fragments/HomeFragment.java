@@ -204,7 +204,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         FileApi fileApi = RetroClient.getApiService();
         final Call<ContentResult> contentResultCall = fileApi.getContent("007b428d-b807-4ccd-a3a8-afdcc0f18d0b",
-                0, 1, 10, "LastItem");
+                0, 1, 10, "" +
+                        "");
         contentResultCall.enqueue(new Callback<ContentResult>() {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
@@ -216,7 +217,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                         final List<VideoContentObject> videoContentObjects = response.body().getResult();
                         for (int i = 0; i < videoContentObjects.size(); i++) {
-                            String picurl = "http://79.175.138.77:7091/file/getfile?FileType=image&fileid=" + (videoContentObjects.get(i).getHeaderImageId());
+                            String picurl = (videoContentObjects.get(i).getHeaderImageFileAddress());
 
                             String title = videoContentObjects.get(i).getSubject();
                             certificationText.add(title);

@@ -52,7 +52,9 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
     @Override
     public void onResume() {
         super.onResume();
+
           getContent();
+       
 //        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
 

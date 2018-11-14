@@ -19,7 +19,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.hillavas.tipnoo"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,7 @@ android {
 
     productFlavors {
         irancell {
-            minSdkVersion 17
+            minSdkVersion 21
             targetSdkVersion 27
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
             versionCode 1
@@ -44,7 +44,7 @@ android {
             //resValue ("string", "app_name", "" )
         }
         hamrahaval {
-            minSdkVersion 17
+            minSdkVersion 21
             applicationIdSuffix '.hamrahaval'
             targetSdkVersion 27
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'

@@ -33,15 +33,15 @@ public class VideoContentObject implements Serializable {
     @SerializedName("IsBookmarked")
     @Expose
     private Boolean isBookmarked;
-    @SerializedName("TeaserId")
+    @SerializedName("TeaserFileAddress")
     @Expose
-    private String teaserId;
-    @SerializedName("VideoId")
+    private String TeaserFileAddress;
+    @SerializedName("VideoFileAddress")
     @Expose
-    private String videoId;
-    @SerializedName("HeaderImageId")
+    private String VideoFileAddress;
+    @SerializedName("HeaderImageFileAddress")
     @Expose
-    private String headerImageId;
+    private String HeaderImageFileAddress;
     @SerializedName("InsertDateMi")
     @Expose
     private String insertDateMi;
@@ -114,28 +114,28 @@ public class VideoContentObject implements Serializable {
         this.isBookmarked = isBookmarked;
     }
 
-    public String getTeaserId() {
-        return teaserId;
+    public String getTeaserFileAddress() {
+        return TeaserFileAddress;
     }
 
-    public void setTeaserId(String teaserId) {
-        this.teaserId = teaserId;
+    public void setTeaserFileAddress(String teaserId) {
+        this.TeaserFileAddress = teaserId;
     }
 
-    public String getVideoId() {
-        return videoId;
+    public String getVideoFileAddress() {
+        return VideoFileAddress;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
+    public void setVideoFileAddress(String videoId) {
+        this.VideoFileAddress = videoId;
     }
 
-    public String getHeaderImageId() {
-        return headerImageId;
+    public String getHeaderImageFileAddress() {
+        return HeaderImageFileAddress;
     }
 
-    public void setHeaderImageId(String headerImageId) {
-        this.headerImageId = headerImageId;
+    public void setHeaderImageFileAddress(String headerImageId) {
+        this.HeaderImageFileAddress = headerImageId;
     }
 
     public String getInsertDateMi() {
