@@ -28,7 +28,7 @@
             android:background="#9fffffff"
           >
             <TextView
-                android:textSize="11dp"
+                android:textSize="10dp"
                 android:textColor="#000"
                 android:id="@+id/content_title_home_fragment"
                 android:layout_width="wrap_content"

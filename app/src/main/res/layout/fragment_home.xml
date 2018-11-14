@@ -29,13 +29,13 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
+                    android:layout_marginBottom="30dp"
                     tools:ignore="RtlHardcoded" />
                 <me.relex.circleindicator.CircleIndicator
-                    app:ci_drawable="@drawable/bg_red"
+                    app:ci_drawable="@drawable/bg_black"
                     android:id="@+id/indicator"
-
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentBottom="true" />
             </RelativeLayout>
             <ScrollView
@@ -63,23 +63,41 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:padding="8dp"
-                                android:layout_marginTop="20dp"
+
                                 android:textColor="#8e8d8d"
                                 android:textSize="12sp"
                                 android:text="@string/selected_videos"
                                 />
-                            <TextView
+                            <RelativeLayout
                                 android:id="@+id/more_selectedvideo"
-                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:textColor="#c43423"
-                                android:padding="8dp"
+                                android:tint="#c43423"
                                 android:layout_alignParentStart="true"
                                 android:text="@string/more_listitem"
+                                >
+                                <ImageView
+                                    android:id="@+id/more_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                                    android:paddingTop="8dp"
 
-                               />
+                                    android:paddingBottom="8dp"
+                                    android:layout_alignParentStart="true"
+
+
+                                    />
+                                <TextView
+                                    android:layout_toRightOf="@+id/more_img"
+                                    android:textColor="#8e8d8d"
+                                    android:textSize="12sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="@string/more_listitem"/>
+                            </RelativeLayout>
                                 <!--fontPath="fonts/iransans.ttf" />-->
                             <android.support.v7.widget.RecyclerView
 
@@ -103,23 +121,54 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:padding="8dp"
-                                android:layout_marginTop="20dp"
+                                android:layout_marginTop="10dp"
                                 android:textColor="#8e8d8d"
                                 android:textSize="12sp"
                                 android:text="@string/mostviewed_videos"
 
                                 tools:ignore="NotSibling" />
-                            <TextView
+                            <!--<TextView-->
+                                <!--android:id="@+id/more_mostvisitedvideo"-->
+                                <!--android:textSize="12sp"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="20dp"-->
+                                <!--android:textColor="#c43423"-->
+                                <!--android:padding="8dp"-->
+                                <!--android:layout_alignParentStart="true"-->
+                                <!--android:text="@string/more_listitem"-->
+                                <!--/>-->
+                            <RelativeLayout
                                 android:id="@+id/more_mostvisitedvideo"
-                                android:textSize="12sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:textColor="#c43423"
-                                android:padding="8dp"
+                                android:layout_marginTop="10dp"
+                                android:tint="#c43423"
                                 android:layout_alignParentStart="true"
                                 android:text="@string/more_listitem"
-                                />
+                                >
+                                <ImageView
+                                    android:id="@+id/more_img2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                                    android:paddingTop="8dp"
+
+                                    android:paddingBottom="8dp"
+                                    android:layout_alignParentStart="true"
+
+
+                                    />
+                                <TextView
+                                    android:layout_toRightOf="@+id/more_img2"
+                                    android:textColor="#8e8d8d"
+                                    android:textSize="12sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="@string/more_listitem"/>
+                            </RelativeLayout>
                             <android.support.v7.widget.RecyclerView
                                 android:layout_below="@+id/more_mostvisitedvideo"
                                 android:id="@+id/mostviewed_videos"
@@ -159,9 +208,9 @@
             </ScrollView>
         </LinearLayout>
 
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            layout="@layout/layout_loading_fail" />
+        <!--<include-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--layout="@layout/layout_loading_fail" />-->
     </RelativeLayout>
 </FrameLayout>

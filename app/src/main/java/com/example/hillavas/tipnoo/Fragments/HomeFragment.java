@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,7 +55,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     ProgressDialog progressDialog;
     Timer timer;
     List<String> urls;
-    TextView moreSelectedVideo, moreVisitedVideo;
+    RelativeLayout moreSelectedVideo
+      ,    moreVisitedVideo;
 
     RelativeLayout relativeLayoutFail,relativeLayoutLoading;
     TextView lblFailMessage;
@@ -220,7 +222,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             String picurl = (videoContentObjects.get(i).getHeaderImageFileAddress());
 
                             String title = videoContentObjects.get(i).getSubject();
-                            certificationText.add(title);
+                            certificationText.add("");
                             urls.add(picurl);
                             urls.size();
 

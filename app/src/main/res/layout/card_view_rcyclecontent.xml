@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="2dp"
+
             android:scaleType="fitXY" />
 
         <RelativeLayout
@@ -36,8 +36,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="-4dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="-8dp"
+                android:tint="@color/md_black_1000"
                 android:src="@drawable/ic_bookmark_border_black_36dp" />
 
 
@@ -46,41 +47,49 @@
         <RelativeLayout
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="30dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:background="#9fffffff">
+            android:layout_marginBottom="0dp"
+            android:background="#9fffffff"
+         >
 
-            <TextView
-                android:id="@+id/content_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_margin="5dp"
-                android:text="@string/card_view_text"
-                android:textColor="#000"
-                android:textSize="11dp" />
+
 
             <RelativeLayout
-                android:layout_width="match_parent"
+
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/content_title"
+
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="1dp">
 
+                <TextView
+                    android:id="@+id/content_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/view_count"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/card_view_text"
+                    android:textColor="#000"
+                    android:textSize="11dp" />
 
                 <ImageView
                     android:id="@+id/view_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="0dp"
+                    android:tint="@color/md_black_1000"
                     android:layout_marginBottom="10dp"
-                    android:layout_toLeftOf="@+id/view_count"
+                    android:layout_toRightOf="@+id/like_count"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/ic_visibility_black_36dp" />
 
                 <ImageView
@@ -88,21 +97,21 @@
                     android:id="@+id/like_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_toLeftOf="@+id/like_count"
+                    android:tint="@color/md_black_1000"
                     android:src="@drawable/ic_favorite_border_black_36dp" />
 
                 <TextView
                     android:id="@+id/view_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="3dp"
+
+
+                    android:layout_toRightOf="@+id/view_img"
+                    android:padding="0dp"
                     android:text="100"
                     android:textColor="#000"
                     android:textSize="11dp" />
@@ -111,26 +120,24 @@
                     android:id="@+id/like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="77dp"
-                    android:layout_marginBottom="10dp"
-                    android:padding="3dp"
+                    android:layout_toEndOf="@+id/like_img"
+                    android:padding="0dp"
                     android:text="200"
                     android:textColor="#000"
                     android:textSize="11dp" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/view_img"
-                    android:layout_alignEnd="@+id/view_img"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="|" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignTop="@+id/view_img"-->
+                    <!--android:layout_alignEnd="@+id/view_img"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginTop="4dp"-->
+                    <!--android:layout_marginEnd="40dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:text="|" />-->
                 <!--android:layout_toLeftOf="@+id/share"-->
             </RelativeLayout>
         </RelativeLayout>
