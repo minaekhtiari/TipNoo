@@ -23,7 +23,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        flavorDimensions "default"
+        flavorDimensions "defaultpic"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -87,7 +87,7 @@ dependencies {
     //videoplayer
     //compile 'com.github.appunite:video-player-android:1.0.1'
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true;
     }
 //ahbottomnavigation

@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">TipNoo</string>
+    <string name="app_name">تیپ تو</string>
     <string name="title_home">خانه</string>
-    <string name="title_perfume">عطر</string>
+    <string name="title_perfume">عطر و اکسسوری</string>
     <string name="title_trimmingHair"> پیرایش</string>
     <string name="title_style">تیپ و استایل</string>
     <string name="title_makeup">گریم</string>
@@ -27,7 +27,10 @@
     <string name="dontGiveRequestCode">کد فعال سازی را دریافت نکرده اید؟</string>
     <string name="incorrectCode">کد وارد شده اشتباه است</string>
     <string name="search_txt">جستجو</string>
+    <string name="tag_select_txt">انتخاب برچسب</string>
+    <string name="result_txt">نتایج</string>
     <string name="filter_txt">فیلتر</string>
     <string name="serverError">خطایی در سرور رخ داده است.</string>
     <string name="try_again_button">تلاش مجدد</string>
+    <string name="tag_page_txt">برای جستجو برچسب های مورد نظر خود را انتخاب کنید</string>
 </resources>

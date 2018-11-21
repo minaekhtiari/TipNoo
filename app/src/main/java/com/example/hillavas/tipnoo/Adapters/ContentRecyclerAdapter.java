@@ -62,6 +62,7 @@ public class ContentRecyclerAdapter extends RecyclerView.Adapter<ContentRecycler
         } else {
 
             viewHolder.bookmark.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
+
         }
 
         Picasso.with(context).load(videoContentObjectPositon.getHeaderImageFileAddress()).into(viewHolder.contetntImg);

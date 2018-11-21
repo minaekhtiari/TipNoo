@@ -208,9 +208,9 @@
             </ScrollView>
         </LinearLayout>
 
-        <!--<include-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--layout="@layout/layout_loading_fail" />-->
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/layout_loading_fail" />
     </RelativeLayout>
 </FrameLayout>

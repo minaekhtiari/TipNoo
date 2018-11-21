@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.Models.ContentResult;
@@ -111,30 +112,30 @@ public class HomeViewPagerAdapter extends PagerAdapter {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
 
-                response.body().getIsSuccessful();
 
                 if (response.isSuccessful()) {
-                    //todo
+                    if(  response.body().getIsSuccessful()) {
 
 
-                  videoContentObjects = response.body().getResult();
-                    for (int i = 0; i < videoContentObjects.size(); i++) {
+                        videoContentObjects = response.body().getResult();
+                        for (int i = 0; i < videoContentObjects.size(); i++) {
 
 
+                        }
 
 
+                    }else{
+                        Toast.makeText(c, String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
                     }
-
-
-
+                }else{
+                    Toast.makeText(c,R.string.serverError+"",Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                //   Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
-                Log.d("---000", t.toString());
+                Toast.makeText(c,R.string.noConnection+"",Toast.LENGTH_SHORT).show();
             }
         });
 

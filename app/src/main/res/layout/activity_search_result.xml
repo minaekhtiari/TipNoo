@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
             <TextView
-                android:text="@string/search_txt"
+                android:text="@string/result_txt"
                 android:textColor="#FFF"
                 android:id="@+id/toolbar_title"
                 android:layout_centerVertical="true"
@@ -29,7 +29,7 @@
             <ImageView
                 android:padding="8dp"
                 android:id="@+id/search_result_backspace"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:tint="#ffffff"
                 android:src="@drawable/ic_backspace_36dp"

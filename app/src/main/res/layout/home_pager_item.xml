@@ -14,15 +14,15 @@
 
     <TextView
 
-        android:textSize="19dp"
-        android:textColor="#f17768"
-        android:gravity="right"
+        android:textSize="15sp"
+        android:textColor="#e68e83"
+        android:gravity="center"
         android:id="@+id/textview_home_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingBottom="32dp"
-        android:layout_marginRight="16dp"
+        android:paddingBottom="10dp"
+
 
 
 

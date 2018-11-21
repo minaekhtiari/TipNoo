@@ -102,7 +102,7 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
         contentResultCall.enqueue(new Callback<ContentResult>() {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
-              response.body().getIsSuccessful();
+
                 if(response.isSuccessful()){
                    List<VideoContentObject> Lists=response.body().getResult();
                    videoContentObjects.clear();

@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 // Set current item programmatically
-        bottomNavigation.setCurrentItem(0);
+        bottomNavigation.setCurrentItem(4);
 
 // Customize notification (title, background, typeface)
         //  bottomNavigation.setNotificationBackgroundColor(Color.parseColor("#F63D2B"));
@@ -162,12 +162,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onTabSelected(int position, boolean wasSelected) {
 
                 switch (position) {
-                    case 0:
+                    case 4:
                         fragment=new HomeFragment();
                         loadFragment(fragment);
                         toolbarTitle.setText(R.string.title_home);
                         return true;
-                    case 1:
+                    case 3:
                         Fragment fragment = new CategoryFragment();
                         Bundle bundle = new Bundle();
                         bundle.putInt("arg",13);
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         loadFragment(fragment2);
                         toolbarTitle.setText(R.string.title_trimmingHair);
                         return true;
-                    case 3:
+                    case 1:
                         Fragment fragment3 = new CategoryFragment();
                         Bundle bundle3= new Bundle();
                         bundle3.putInt("arg",11);
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         loadFragment(fragment3);
                         toolbarTitle.setText(R.string.title_style);
                         return true;
-                    case 4:
+                    case 0:
                         Fragment fragment4 = new CategoryFragment();
                         Bundle bundle4= new Bundle();
                         bundle4.putInt("arg",10);
@@ -238,6 +238,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentfilter);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getFragmentManager().popBackStack();
+        }
+        super.onBackPressed();
     }
 
     protected void attachBaseContext(Context newBase) {

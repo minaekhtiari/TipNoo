@@ -138,27 +138,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
 
-                response.body().getIsSuccessful();
-
                 if (response.isSuccessful()) {
-                    //todo
-                    progressDialog.cancel();
+                   if(  response.body().getIsSuccessful()) {
 
-                    final ArrayList<VideoContentObject> videoContentObjects = (ArrayList<VideoContentObject>) response.body().getResult();
-                    HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(getContext(), videoContentObjects);
-                    mostViewedRecycler.setAdapter(contentRecyclerAdapter);
+                       final ArrayList<VideoContentObject> videoContentObjects = (ArrayList<VideoContentObject>) response.body().getResult();
+                       HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(getContext(), videoContentObjects);
+                       mostViewedRecycler.setAdapter(contentRecyclerAdapter);
 
 
-                    // Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
-                    Log.d("---000", response.body().getIsSuccessful().toString());
-
+                       // Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
+                       Log.d("---000", response.body().getIsSuccessful().toString());
+                   }else {
+                       Toast.makeText(getContext(), String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
+                   }
+                }else{
+                    Toast.makeText(getContext(),R.string.serverError+"",Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                //  Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.noConnection+"",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -173,11 +174,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
 
-                response.body().getIsSuccessful();
 
                 if (response.isSuccessful()) {
-                    //todo
-                    progressDialog.cancel();
+                    if (response.body().getIsSuccessful()) {
+
 
                     final ArrayList<VideoContentObject> videoContentObjects = (ArrayList<VideoContentObject>) response.body().getResult();
                     HomeContentRecyclerAdapter contentRecyclerAdapter = new HomeContentRecyclerAdapter(getContext(), videoContentObjects);
@@ -186,15 +186,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     //  Toast.makeText(getActivity(),""+response.body().getIsSuccessful(),Toast.LENGTH_SHORT).show();
                     Log.d("---000", response.body().getIsSuccessful().toString());
-
+                }
+                else {
+                        Toast.makeText(getContext(), String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(getContext(),R.string.serverError+"",Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                //  Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getContext(),R.string.noConnection+"",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -222,7 +226,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             String picurl = (videoContentObjects.get(i).getHeaderImageFileAddress());
 
                             String title = videoContentObjects.get(i).getSubject();
-                            certificationText.add("");
+                            certificationText.add(title);
                             urls.add(picurl);
                             urls.size();
 
@@ -274,7 +278,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                //   Toast.makeText(getActivity(),""+t,Toast.LENGTH_SHORT).show();
 
                 loadingOrFail(false, true);//fail layout visible
                 lblFailMessage.setText(getString(R.string.noConnection));

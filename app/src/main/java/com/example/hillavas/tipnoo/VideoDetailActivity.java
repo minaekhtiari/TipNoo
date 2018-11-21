@@ -1,6 +1,8 @@
 package com.example.hillavas.tipnoo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,25 +21,37 @@ import com.example.hillavas.tipnoo.Models.ActionsCountResult;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
 import com.example.hillavas.tipnoo.Tools.PersianUtils;
+import com.google.android.flexbox.FlexboxLayout;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 
 import cn.jzvd.JzvdStd;
+import fisk.chipcloud.ChipCloud;
+import fisk.chipcloud.ChipCloudConfig;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class VideoDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView bookmarkImg, likeImg, shareImg, videoImg, playIcon, backImg;
-    TextView likeTxt, viewTxt, toolbarTitle;
+    TextView likeTxt, viewTxt, toolbarTitle,bodyText;
     PersianUtils persianUtils;
 
     VideoContentObject videoContentObject;
     JzvdStd videoview;
 
-    @Override
+
+    FlexboxLayout flexBox;
+    ChipCloud chipCloud;
+
+    String[] demoArray ={"آرایشی","پوست صورت","عطر","همه فصول","ترفند","تیپ ساده","tag7"};
+
+
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_detail);
@@ -46,11 +60,13 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
         shareImg = findViewById(R.id.detail_share_img);
         likeTxt = findViewById(R.id.detail_like_count);
         viewTxt = findViewById(R.id.detail_view_count);
-        videoview = (JzvdStd) findViewById(R.id.video_view);
+//        videoview = (JzvdStd) findViewById(R.id.video_view);
         videoImg = findViewById(R.id.video_img);
         playIcon = findViewById(R.id.detail_play_icon);
         backImg = findViewById(R.id.back_img);
         toolbarTitle = findViewById(R.id.detail_toolbar_title);
+        bodyText=findViewById(R.id.detail_body_txt);
+        flexBox=findViewById(R.id.tag_flexbox_layout);
 
 
         bookmarkImg.setOnClickListener(this);
@@ -76,33 +92,61 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
             bookmarkImg.setImageResource(R.drawable.ic_bookmark_border_black_36dp);
 
         }
+        toolbarTitle.setText(videoContentObject.getSubject());
+        bodyText.setText(videoContentObject.getBody());
 
-//        Picasso.with(VideoDetailActivity.this).load(
-//                "http://79.175.138.77:7091/file/getfile?FileType=image&fileid="+videoContentObject.teaserId).into(videoImg);
+
+
+       ChipCloudConfig config = new ChipCloudConfig()
+               .selectMode(ChipCloud.SelectMode.none)
+               .uncheckedChipColor(Color.parseColor("#c43423"))
+               .uncheckedTextColor(Color.parseColor("#ffffff"))
+               .useInsetPadding(true);
+
+
+      chipCloud = new ChipCloud(this, flexBox, config);
+      chipCloud.addChips(demoArray);
+
+
+
+
+
+
+        Picasso.with(VideoDetailActivity.this).load(videoContentObject.getHeaderImageFileAddress()).into(videoImg);
+
+        if ((videoContentObject.getVideoFileAddress()).length() > 0) {
+            playIcon.setVisibility(View.VISIBLE);
+
+
+        }
+
+
 
         // String.format(RetroClient.FILE_URL,"video",videoContentObject.getVideoId());
-        videoview.setUp(String.valueOf(videoContentObject.getVideoFileAddress()), "", JzvdStd.SCREEN_WINDOW_NORMAL);
-
-
-        videoview.thumbImageView.setImageURI(Uri.parse("http://cdn.time.ir/Content/media/image/2018/08/61_orig.png"));
-
+//        videoview.setUp(String.valueOf(videoContentObject.getVideoFileAddress()), "", JzvdStd.SCREEN_WINDOW_NORMAL);
+//
+//
+//        videoview.thumbImageView.setImageURI(Uri.parse("http://cdn.time.ir/Content/media/image/2018/08/61_orig.png"));
+//
 
         getViewedCount();
 
-//        playIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                playIcon.setVisibility(View.INVISIBLE);
-//                videoImg.setVisibility(View.INVISIBLE);
+        playIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playIcon.setVisibility(View.INVISIBLE);
+                videoImg.setVisibility(View.INVISIBLE);
 //                videoview.setVisibility(View.VISIBLE);
 //                getViewedCount();
-//
-//
-//
-//              //  videoview.onStatePlaying();
-//            }
-//        });
 
+                Intent intentVideo = new Intent(Intent.ACTION_VIEW);
+                intentVideo.setDataAndType(Uri.parse(videoContentObject.getVideoFileAddress()), "video/*");
+                startActivity(intentVideo);
+
+              //  videoview.onStatePlaying();
+            }
+
+        });
 
     }
 
@@ -153,6 +197,7 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
         if (JzvdStd.backPress()) {
             return;
         }
+
         super.onBackPressed();
     }
 
@@ -179,7 +224,7 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
                     //  if(EncryptedContentId != null) {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, "http://www.time.ir/");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, videoContentObject.getTeaserFileAddress());
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
                     // }
@@ -270,6 +315,19 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+
+        videoImg.setVisibility(View.VISIBLE);
+        playIcon.setVisibility(View.VISIBLE);
+        super.onResume();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
 
