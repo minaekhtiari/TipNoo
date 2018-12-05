@@ -1,0 +1,4 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('appnex-v3.aar'))
+dependencies {
+}

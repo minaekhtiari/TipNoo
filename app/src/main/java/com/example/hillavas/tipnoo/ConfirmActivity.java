@@ -54,84 +54,84 @@ public class ConfirmActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(ConfirmActivity.this,SelectSexActivity.class);
                 startActivity(intent);
+   finish();
 
-
-
-                if (editCode.getText().length() == 4) {
-                    btnCodeRequestSender.setVisibility(View.INVISIBLE);
-                    final SubscribeConfirmModel subscribeConfirmModel = new SubscribeConfirmModel();
-                    subscribeConfirmModel.setTransactionId(sharedPreferencesHome.getString(TRANSACTIONID, ""));
-                    subscribeConfirmModel.setPin(String.valueOf(editCode.getText().toString()));
-
-
-
-                    if(sharedPreferencesHome.getBoolean(SUBSCRIBEDUSER,false)){//is subscribed
-
-                        sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, false).commit();
-
-
-                        OtpApiFactory.getOtpClient().subscribeConfirmViaCode(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
-                            @Override
-                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
-
-                                if (response != null) {
-                                    if (!response.body().isIsSuccessfull()) {
-                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-                                        Toast.makeText(ConfirmActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-
-                                    memberSignUpFotReciveToken(response.body().getResult());
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResultJson> call, Throwable t) {
-                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-
-                                btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-                            }
-                        });
-
-                    }else{
-
-                        OtpApiFactory.getOtpClient().subscribeConfirm(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
-                            @Override
-                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
-
-                                if (response != null) {
-                                    if (!response.body().isIsSuccessfull()) {
-                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-                                        Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-
-                                    memberSignUpFotReciveToken(response.body().getResult());
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResultJson> call, Throwable t) {
-                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-
-                                btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-                            }
-                        });
-
-
-                    }
-
-
-                }else{
-                    Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
-
-                }
+//
+//                if (editCode.getText().length() == 4) {
+//                    btnCodeRequestSender.setVisibility(View.INVISIBLE);
+//                    final SubscribeConfirmModel subscribeConfirmModel = new SubscribeConfirmModel();
+//                    subscribeConfirmModel.setTransactionId(sharedPreferencesHome.getString(TRANSACTIONID, ""));
+//                    subscribeConfirmModel.setPin(String.valueOf(editCode.getText().toString()));
+//
+//
+//
+//                    if(sharedPreferencesHome.getBoolean(SUBSCRIBEDUSER,false)){//is subscribed
+//
+//                        sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, false).commit();
+//
+//
+//                        OtpApiFactory.getOtpClient().subscribeConfirmViaCode(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
+//                            @Override
+//                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+//
+//                                if (response != null) {
+//                                    if (!response.body().isIsSuccessfull()) {
+//                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//                                        Toast.makeText(ConfirmActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+//                                        return;
+//                                    }
+//
+//                                    memberSignUpFotReciveToken(response.body().getResult());
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResultJson> call, Throwable t) {
+//                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+//
+//                                btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//                            }
+//                        });
+//
+//                    }else{
+//
+//                        OtpApiFactory.getOtpClient().subscribeConfirm(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
+//                            @Override
+//                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+//
+//                                if (response != null) {
+//                                    if (!response.body().isIsSuccessfull()) {
+//                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//                                        Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
+//                                        return;
+//                                    }
+//
+//                                    memberSignUpFotReciveToken(response.body().getResult());
+//                                }
+//
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResultJson> call, Throwable t) {
+//                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+//
+//                                btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//                            }
+//                        });
+//
+//
+//                    }
+//
+//
+//                }else{
+//                    Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
+//
+//                }
 
             }
         });

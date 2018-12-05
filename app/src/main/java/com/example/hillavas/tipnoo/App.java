@@ -5,6 +5,8 @@ import android.content.Context;
 
 
 import com.crashlytics.android.Crashlytics;
+
+import io.appnex.android.notification.Appnex;
 import io.fabric.sdk.android.Fabric;
 import net.jhoobin.jhub.CharkhoneSdkApp;
 
@@ -18,6 +20,8 @@ public class App extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
      //   Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
+      Appnex.init(this);
+
       CharkhoneSdkApp.initSdk((Context) this, getSecrets(), false);
 
 

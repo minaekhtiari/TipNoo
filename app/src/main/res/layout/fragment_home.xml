@@ -6,9 +6,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="vertical"
@@ -17,15 +22,15 @@
             <RelativeLayout
                 android:id="@+id/viewpager_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
+                android:layout_height="wrap_content"
+
 
                 >
                 <android.support.v4.view.ViewPager
 
                    android:id="@+id/Gallerypager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
@@ -38,20 +43,14 @@
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true" />
             </RelativeLayout>
-            <ScrollView
 
-
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-
-               >
 
                     <LinearLayout
 
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp">
+                        android:layout_height="wrap_content"
+                        >
                         <RelativeLayout
 
                             android:layout_width="match_parent"
@@ -91,7 +90,7 @@
                                     />
                                 <TextView
                                     android:layout_toRightOf="@+id/more_img"
-                                    android:textColor="#8e8d8d"
+                                    android:textColor="#000"
                                     android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -162,7 +161,7 @@
                                     />
                                 <TextView
                                     android:layout_toRightOf="@+id/more_img2"
-                                    android:textColor="#8e8d8d"
+                                    android:textColor="#000"
                                     android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -205,12 +204,14 @@
                             <!--android:layout_weight="0.5" />-->
                     </LinearLayout>
 
-            </ScrollView>
-        </LinearLayout>
 
+        </LinearLayout>
+        </ScrollView>
         <include
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             layout="@layout/layout_loading_fail" />
     </RelativeLayout>
+
+
 </FrameLayout>

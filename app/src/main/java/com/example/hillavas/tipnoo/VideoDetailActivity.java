@@ -23,7 +23,9 @@ import com.example.hillavas.tipnoo.Retrofit.RetroClient;
 import com.example.hillavas.tipnoo.Tools.PersianUtils;
 import com.google.android.flexbox.FlexboxLayout;
 import com.squareup.picasso.Picasso;
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,7 +40,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class VideoDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView bookmarkImg, likeImg, shareImg, videoImg, playIcon, backImg;
-    TextView likeTxt, viewTxt, toolbarTitle,bodyText;
+    JustifiedTextView likeTxt, viewTxt, toolbarTitle,bodyText,videoTitle;
     PersianUtils persianUtils;
 
     VideoContentObject videoContentObject;
@@ -48,9 +50,9 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
     FlexboxLayout flexBox;
     ChipCloud chipCloud;
 
-    String[] demoArray ={"آرایشی","پوست صورت","عطر","همه فصول","ترفند","تیپ ساده","tag7"};
+    ArrayList<String> demoArray ;
 
-
+    String shareUrl;
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
         shareImg = findViewById(R.id.detail_share_img);
         likeTxt = findViewById(R.id.detail_like_count);
         viewTxt = findViewById(R.id.detail_view_count);
+        videoTitle=findViewById(R.id.video_title);
 //        videoview = (JzvdStd) findViewById(R.id.video_view);
         videoImg = findViewById(R.id.video_img);
         playIcon = findViewById(R.id.detail_play_icon);
@@ -78,8 +81,12 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
         videoContentObject = (VideoContentObject) getIntent().getSerializableExtra("video_detail");
         persianUtils = new PersianUtils();
         toolbarTitle.setText(videoContentObject.getSubject());
+        videoTitle.setText(videoContentObject.getSubject());
         likeTxt.setText(persianUtils.toFarsi(String.valueOf(videoContentObject.getLikeCount())));
         viewTxt.setText(persianUtils.toFarsi(String.valueOf(videoContentObject.getViewCount())));
+
+        shareUrl="http://apps.hillavas.com:8088/TeepeTo/Api/Content/Share?id="+videoContentObject.getContentId();
+
         if (videoContentObject.getIsLiked() == true) {
             likeImg.setImageResource(R.drawable.ic_favorite_black_36dp);
         } else {
@@ -105,7 +112,10 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
 
 
       chipCloud = new ChipCloud(this, flexBox, config);
-      chipCloud.addChips(demoArray);
+       for(int i=0;i<videoContentObject.getAllTags().size();i++){
+         chipCloud.addChips(new String[]{videoContentObject.getAllTags().get(i).getTitle().toString()});
+       }
+      //chipCloud.addChips("");
 
 
 
@@ -224,7 +234,8 @@ public class VideoDetailActivity extends AppCompatActivity implements View.OnCli
                     //  if(EncryptedContentId != null) {
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, videoContentObject.getTeaserFileAddress());
+                //    sendIntent.putExtra(Intent.EXTRA_TEXT, videoContentObject.getTeaserFileAddress());
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, shareUrl);
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
                     // }

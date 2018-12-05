@@ -128,14 +128,14 @@ public class HomeViewPagerAdapter extends PagerAdapter {
                         Toast.makeText(c, String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(c,R.string.serverError+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c,R.string.serverError,Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(c,R.string.noConnection+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,R.string.noConnection,Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -152,14 +152,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                        Toast.makeText(getContext(), String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
                    }
                 }else{
-                    Toast.makeText(getContext(),R.string.serverError+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),R.string.serverError,Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getContext(),R.string.noConnection+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.noConnection,Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -191,14 +191,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         Toast.makeText(getContext(), String.valueOf(response.body().getMessage()),Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(getContext(),R.string.serverError+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),R.string.serverError,Toast.LENGTH_SHORT).show();
                 }
 
             }
 
             @Override
             public void onFailure(Call<ContentResult> call, Throwable t) {
-                Toast.makeText(getContext(),R.string.noConnection+"",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.noConnection,Toast.LENGTH_SHORT).show();
             }
         });
 

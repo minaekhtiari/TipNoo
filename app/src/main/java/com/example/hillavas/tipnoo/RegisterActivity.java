@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
 //        mprogressBar = (ProgressBar) findViewById(R.id.circular_progress_bar);
          anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
 
-        separateVariant();
+      //  separateVariant();
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,88 +89,94 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
                     return;
 
                 }
-
-
-                sharedPreferencesHome.edit().putString(MOBILE_NUMBER,mobileNumber).commit();
-
-
-                //separateVariant
-                //   if (operator.contains("IRANCELL")|| operator.contains("MTN"))
-                if(BuildConfig.FLAVOR.equals("irancell"))
-                {
-
-                    Intent fillInIntent = new Intent();
-
-//                checkAccount(phoneNumber); //todo check user subscribe
-                    fillInIntent.putExtra("msisdn", mobileNumber);
-                    mHelper.setFillInIntent(fillInIntent);
-
-                    payload = "";
-                    try {
-                        mHelper.launchPurchaseFlow(RegisterActivity.this, SKU_PREMIUM, RC_REQUEST,
-                                mPurchaseFinishedListener, payload);
-
-                        //btnRegister.setVisibility(View.INVISIBLE);
-
-                    } catch (IabHelper.IabAsyncInProgressException e) {
-                        alert("Error launching purchase flow. Another async operation in progress.");
-                    }
-
-                } else {
-                    anim.setDuration(15000);
-                    anim.setInterpolator(new DecelerateInterpolator());
-                    anim.start();
-                    Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
-
-
-                    SubscribeModel subscribeModel = new SubscribeModel();
-                    subscribeModel.setMobileNumber(String.valueOf(editmobileNumber.getText()));
-
-                    btnRegister.setEnabled(false);
-                   // progressBar.setVisibility(View.VISIBLE);
-
-                    OtpApiFactory.getOtpClient().subscribe(subscribeModel).enqueue(new Callback<ResultJson>() {
-                        @Override
-                        public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
-                            if (response != null && response.body() != null) {
-
-                                if (response.body().isIsSuccessfull() && response.body().getResult().equals("-1")) { //user is subscribed via phoneNumber
-
-                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
-                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getMessage()).commit();
-                                    sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, true).commit();
-                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
-                                    startActivity(intent);
-
-                                } else if (response.body().isIsSuccessfull()) {
-
-                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
-                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getResult().toString()).commit();
-                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Toast toast = Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
-
-                                }
-
-                            }
-
-                            btnRegister.setEnabled(true);
-                          //  progressBar.setVisibility(View.INVISIBLE);
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResultJson> call, Throwable t) {
-                            Toast.makeText(RegisterActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-                            btnRegister.setEnabled(true);
-                           // progressBar.setVisibility(View.INVISIBLE);
-
-                        }
-
-                    });
-
+                //todo
+                else {
+                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
+
+//
+//                sharedPreferencesHome.edit().putString(MOBILE_NUMBER,mobileNumber).commit();
+//
+//
+//                //separateVariant
+//                //   if (operator.contains("IRANCELL")|| operator.contains("MTN"))
+//                if(BuildConfig.FLAVOR.equals("irancell"))
+//                {
+//
+//                    Intent fillInIntent = new Intent();
+//
+////                checkAccount(phoneNumber); //todo check user subscribe
+//                    fillInIntent.putExtra("msisdn", mobileNumber);
+//                    mHelper.setFillInIntent(fillInIntent);
+//
+//                    payload = "";
+//                    try {
+//                        mHelper.launchPurchaseFlow(RegisterActivity.this, SKU_PREMIUM, RC_REQUEST,
+//                                mPurchaseFinishedListener, payload);
+//
+//                        //btnRegister.setVisibility(View.INVISIBLE);
+//
+//                    } catch (IabHelper.IabAsyncInProgressException e) {
+//                        alert("Error launching purchase flow. Another async operation in progress.");
+//                    }
+//
+//                } else {
+//                    anim.setDuration(15000);
+//                    anim.setInterpolator(new DecelerateInterpolator());
+//                    anim.start();
+//                    Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
+//
+//
+//                    SubscribeModel subscribeModel = new SubscribeModel();
+//                    subscribeModel.setMobileNumber(String.valueOf(editmobileNumber.getText()));
+//
+//                    btnRegister.setEnabled(false);
+//                   // progressBar.setVisibility(View.VISIBLE);
+//
+//                    OtpApiFactory.getOtpClient().subscribe(subscribeModel).enqueue(new Callback<ResultJson>() {
+//                        @Override
+//                        public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+//                            if (response != null && response.body() != null) {
+//
+//                                if (response.body().isIsSuccessfull() && response.body().getResult().equals("-1")) { //user is subscribed via phoneNumber
+//
+//                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
+//                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getMessage()).commit();
+//                                    sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, true).commit();
+//                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+//                                    startActivity(intent);
+//
+//                                } else if (response.body().isIsSuccessfull()) {
+//
+//                                    sharedPreferencesHome.edit().putLong(MOBILE_NUMBER, Long.valueOf(editmobileNumber.getText().toString())).commit();
+//                                    sharedPreferencesHome.edit().putString(TRANSACTIONID, response.body().getResult().toString()).commit();
+//                                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+//                                    startActivity(intent);
+//                                } else {
+//                                    Toast toast = Toast.makeText(RegisterActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
+//
+//                                }
+//
+//                            }
+//
+//                            btnRegister.setEnabled(true);
+//                          //  progressBar.setVisibility(View.INVISIBLE);
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<ResultJson> call, Throwable t) {
+//                            Toast.makeText(RegisterActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+//                            btnRegister.setEnabled(true);
+//                           // progressBar.setVisibility(View.INVISIBLE);
+//
+//                        }
+//
+//                    });
+//
+//                }
 
 
             }

@@ -18,7 +18,7 @@ repositories {
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.hillavas.tipnoo"
+        applicationId "apps.campaign.teepeto"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
@@ -26,6 +26,13 @@ android {
         flavorDimensions "defaultpic"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                appnex_channel_id           : 'hook',
+                appnex_app_id               : 'ae99fe70-daeb-e811-a94c-0050568c8c48',
+                // Project number pulled from dashboard, local value is ignored.
+                appnex_google_project_number: '38117559926'
+        ]
     }
     buildTypes {
         release {
@@ -38,6 +45,7 @@ android {
         irancell {
             minSdkVersion 21
             targetSdkVersion 27
+            applicationIdSuffix '.charkhone'
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
             versionCode 1
             versionName '1.1'
@@ -45,7 +53,6 @@ android {
         }
         hamrahaval {
             minSdkVersion 21
-            applicationIdSuffix '.hamrahaval'
             targetSdkVersion 27
             testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
             versionCode 1
@@ -69,28 +76,33 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //Recycler
-    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //calligraphy
     implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
-
     implementation 'me.relex:circleindicator:1.2.2@aar'
     implementation files('libs/inAppSDK.aar')
     implementation files('libs/inAppPurchase.aar')
-
     //TagLibrary
     implementation 'com.google.android:flexbox:1.0.0'
     implementation 'com.github.fiskurgit:ChipCloud:3.0.5'
-
     //videoplayer
     //compile 'com.github.appunite:video-player-android:1.0.1'
     implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
         transitive = true;
     }
-//ahbottomnavigation
+    //ahbottomnavigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
+    implementation project(':appnex-v3')
 
+
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+
+    implementation 'com.uncopt:android.justified:1.0'
+    implementation group: 'cz.msebera.android', name: 'httpclient', version: '4.4.1.1'
 }
+apply plugin: 'com.google.gms.google-services'
+

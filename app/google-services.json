@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "38117559926",
+    "firebase_url": "https://apps-campaign.firebaseio.com",
+    "project_id": "apps-campaign",
+    "storage_bucket": "apps-campaign.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38117559926:android:8e149d0627193d28",
+        "android_client_info": {
+          "package_name": "apps.campaign.teepeto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38117559926-kv7bioigcjpd8bor0l5495ec2sm2gl7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChezeL0190uUOdH8XK8fPgtRnZmaA-Ol8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38117559926:android:31473eb094864895",
+        "android_client_info": {
+          "package_name": "apps.campaign.teepeto.charkhone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38117559926-kv7bioigcjpd8bor0l5495ec2sm2gl7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChezeL0190uUOdH8XK8fPgtRnZmaA-Ol8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

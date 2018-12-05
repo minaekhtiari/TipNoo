@@ -22,23 +22,26 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".VideoDetailActivity" />
+        <activity
+            android:name=".ConfirmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectSexActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VideoDetailActivity"
-            />
-        <activity android:name=".ConfirmActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".SelectSexActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
 
         <!-- &lt;!&ndash; Declare SMS Broadcast receiver &ndash;&gt; -->
         <!--
@@ -50,22 +53,30 @@
         <!-- </intent-filter> -->
         <!-- </receiver> -->
 
-        <activity android:name=".SubscribeConfirmActivity"
+        <activity
+            android:name=".SubscribeConfirmActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MoreVideoListActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".SearchActivity"
+        <activity
+            android:name=".MoreVideoListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".FilterActivity"
+        <activity
+            android:name=".SearchActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SearchResultActivity"
-            android:screenOrientation="portrait"  />
-        <activity android:name=".FilterLeafActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".FilterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FilterLeafActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="32384587bd1a5d0cfcdb12166566ce8d161e7ff8" />
+
+        <activity android:name=".AppnexActivity"></activity>
     </application>
 
 </manifest>

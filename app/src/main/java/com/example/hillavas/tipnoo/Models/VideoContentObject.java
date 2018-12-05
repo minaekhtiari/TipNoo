@@ -6,11 +6,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class VideoContentObject implements Serializable {
 
     public VideoContentObject() {
     }
+
+
 
     @SerializedName("ContentId")
     @Expose
@@ -33,15 +36,18 @@ public class VideoContentObject implements Serializable {
     @SerializedName("IsBookmarked")
     @Expose
     private Boolean isBookmarked;
-    @SerializedName("TeaserFileAddress")
+    @SerializedName("Tags")
     @Expose
-    private String TeaserFileAddress;
+    private String tags;
+    @SerializedName("AllTags")
+    @Expose
+    private List<AllTag> allTags = null;
     @SerializedName("VideoFileAddress")
     @Expose
-    private String VideoFileAddress;
+    private String videoFileAddress;
     @SerializedName("HeaderImageFileAddress")
     @Expose
-    private String HeaderImageFileAddress;
+    private String headerImageFileAddress;
     @SerializedName("InsertDateMi")
     @Expose
     private String insertDateMi;
@@ -114,28 +120,36 @@ public class VideoContentObject implements Serializable {
         this.isBookmarked = isBookmarked;
     }
 
-    public String getTeaserFileAddress() {
-        return TeaserFileAddress;
+    public String getTags() {
+        return tags;
     }
 
-    public void setTeaserFileAddress(String teaserId) {
-        this.TeaserFileAddress = teaserId;
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public List<AllTag> getAllTags() {
+        return allTags;
+    }
+
+    public void setAllTags(List<AllTag> allTags) {
+        this.allTags = allTags;
     }
 
     public String getVideoFileAddress() {
-        return VideoFileAddress;
+        return videoFileAddress;
     }
 
-    public void setVideoFileAddress(String videoId) {
-        this.VideoFileAddress = videoId;
+    public void setVideoFileAddress(String videoFileAddress) {
+        this.videoFileAddress = videoFileAddress;
     }
 
     public String getHeaderImageFileAddress() {
-        return HeaderImageFileAddress;
+        return headerImageFileAddress;
     }
 
-    public void setHeaderImageFileAddress(String headerImageId) {
-        this.HeaderImageFileAddress = headerImageId;
+    public void setHeaderImageFileAddress(String headerImageFileAddress) {
+        this.headerImageFileAddress = headerImageFileAddress;
     }
 
     public String getInsertDateMi() {

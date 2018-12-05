@@ -40,11 +40,12 @@ public class SelectSexActivity extends AppCompatActivity implements View.OnClick
             case R.id.sex_femal:
                 Intent intent=new Intent(SelectSexActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.sex_male:
                 Intent intent1=new Intent(SelectSexActivity.this,MainActivity.class);
                 startActivity(intent1);
-
+   finish();
                 break;
         }
     }

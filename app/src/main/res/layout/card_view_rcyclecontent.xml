@@ -6,7 +6,8 @@
     android:layout_height="250dp"
     android:layout_marginRight="4dp"
     android:layout_marginLeft="4dp"
-    android:layout_marginBottom="16dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
@@ -17,10 +18,9 @@
             android:id="@+id/image_view_subcategory_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
+           android:scaleType="centerCrop"
            android:src="@drawable/defaultpic"
-            android:scaleType="fitXY" />
+             />
 
         <RelativeLayout
             android:layout_width="match_parent"
