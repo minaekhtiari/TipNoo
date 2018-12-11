@@ -12,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hillavas.tipnoo.Adapters.ContentRecyclerAdapter;
+import com.example.hillavas.tipnoo.EndlessRecyclerOnScrollListener;
 import com.example.hillavas.tipnoo.Models.VideoContentObject;
 import com.example.hillavas.tipnoo.Models.ContentResult;
+import com.example.hillavas.tipnoo.MoreVideoListActivity;
 import com.example.hillavas.tipnoo.R;
 import com.example.hillavas.tipnoo.Retrofit.FileApi;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
@@ -39,7 +42,7 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
     ContentRecyclerAdapter contentRecyclerAdapter;
     private SwipeRefreshLayout swipeContainer;
     SubCategoryFragment subCategoryFragment;
-
+    public    int pageNumber ;
 
 
 
@@ -53,7 +56,7 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
     public void onResume() {
         super.onResume();
 
-          getContent();
+          getContent(1);
        
 //        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
@@ -86,26 +89,37 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
         swipeContainer = v.findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(this);
 
+  recyclerContent.setOnScrollListener(new EndlessRecyclerOnScrollListener(lLayout) {
+      @Override
+      public void onLoadMore(int pageNumber) {
 
+          getContent(pageNumber);
+          //Toast.makeText(getContext(),"page"+pageNumber,Toast.LENGTH_SHORT).show();
+      }
+  });
+
+        videoContentObjects =new ArrayList<>();
+        contentRecyclerAdapter = new ContentRecyclerAdapter(getContext(), videoContentObjects);
+        recyclerContent.setAdapter(contentRecyclerAdapter);
         return v;
     }
 
 
-    public void getContent(){
+    public void getContent(int pg ){
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             // categoryId = bundle.getParcelableArrayList("argContent");
             categoryId=bundle.getInt("argContent");
          FileApi fileApi = RetroClient.getApiService();
         final Call<ContentResult> contentResultCall=fileApi.getContent
-                ("007b428d-b807-4ccd-a3a8-afdcc0f18d0b",categoryId,1,10,"LastItem");
+                ("007b428d-b807-4ccd-a3a8-afdcc0f18d0b",categoryId,pg,10,"LastItem");
         contentResultCall.enqueue(new Callback<ContentResult>() {
             @Override
             public void onResponse(Call<ContentResult> call, Response<ContentResult> response) {
 
                 if(response.isSuccessful()){
                    List<VideoContentObject> Lists=response.body().getResult();
-                   videoContentObjects.clear();
+
                    videoContentObjects.addAll(Lists);
                     contentRecyclerAdapter.notifyDataSetChanged();
 
@@ -121,9 +135,6 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
             }
         });
 
-        videoContentObjects =new ArrayList<>();
-        contentRecyclerAdapter = new ContentRecyclerAdapter(getContext(), videoContentObjects);
-        recyclerContent.setAdapter(contentRecyclerAdapter);
     }
 
     }
@@ -136,6 +147,6 @@ public class SubCategoryFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public void onRefresh() {
-      getContent();
+      getContent(pageNumber);
     }
 }
