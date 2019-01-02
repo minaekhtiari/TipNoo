@@ -24,11 +24,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static com.example.hillavas.tipnoo.RegisterActivity.TRANSACTIONID;
+
 public class ConfirmActivity extends AppCompatActivity {
 
     public static final String GUID = "GUID";
-    public static final String TRANSACTIONID = "TRANSACTIONID ";
-    public static final String SUBSCRIBEDUSER = "SubscribedUser";
+
+    public static  final String SUBSCRIBEDUSER = "SubscribedUser";
 
     SharedPreferences sharedPreferencesHome;
 
@@ -52,86 +54,93 @@ public class ConfirmActivity extends AppCompatActivity {
         this.btnCodeRequestSender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ConfirmActivity.this,SelectSexActivity.class);
-                startActivity(intent);
-   finish();
+//                Intent intent=new Intent(ConfirmActivity.this,SelectSexActivity.class);
+//                startActivity(intent);
+//   finish();
 
-//
-//                if (editCode.getText().length() == 4) {
-//                    btnCodeRequestSender.setVisibility(View.INVISIBLE);
-//                    final SubscribeConfirmModel subscribeConfirmModel = new SubscribeConfirmModel();
-//                    subscribeConfirmModel.setTransactionId(sharedPreferencesHome.getString(TRANSACTIONID, ""));
-//                    subscribeConfirmModel.setPin(String.valueOf(editCode.getText().toString()));
-//
-//
-//
-//                    if(sharedPreferencesHome.getBoolean(SUBSCRIBEDUSER,false)){//is subscribed
-//
-//                        sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, false).commit();
-//
-//
-//                        OtpApiFactory.getOtpClient().subscribeConfirmViaCode(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
-//                            @Override
-//                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
-//
-//                                if (response != null) {
-//                                    if (!response.body().isIsSuccessfull()) {
-//                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
-//
-//                                        Toast.makeText(ConfirmActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                                        return;
-//                                    }
-//
-//                                    memberSignUpFotReciveToken(response.body().getResult());
-//                                }
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResultJson> call, Throwable t) {
-//                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-//
-//                                btnCodeRequestSender.setVisibility(View.VISIBLE);
-//
-//                            }
-//                        });
-//
-//                    }else{
-//
-//                        OtpApiFactory.getOtpClient().subscribeConfirm(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
-//                            @Override
-//                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
-//
-//                                if (response != null) {
-//                                    if (!response.body().isIsSuccessfull()) {
-//                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
-//
-//                                        Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
-//                                        return;
-//                                    }
-//
-//                                    memberSignUpFotReciveToken(response.body().getResult());
-//                                }
-//
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResultJson> call, Throwable t) {
-//                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-//
-//                                btnCodeRequestSender.setVisibility(View.VISIBLE);
-//
-//                            }
-//                        });
-//
-//
-//                    }
-//
-//
-//                }else{
-//                    Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
-//
-//                }
+
+                if (editCode.getText().length() == 4) {
+                    btnCodeRequestSender.setVisibility(View.INVISIBLE);
+                    final SubscribeConfirmModel subscribeConfirmModel = new SubscribeConfirmModel();
+                   subscribeConfirmModel.setTransactionId(sharedPreferencesHome.getString(TRANSACTIONID,""));
+                    subscribeConfirmModel.setPin(String.valueOf(editCode.getText().toString()));
+
+
+
+                    if(sharedPreferencesHome.getBoolean(SUBSCRIBEDUSER,false)){//is subscribed
+
+                        sharedPreferencesHome.edit().putBoolean(SUBSCRIBEDUSER, false).commit();
+
+
+                        OtpApiFactory.getOtpClient().subscribeConfirmViaCode(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
+                            @Override
+                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+                                final SubscribeConfirmModel subscribeConfirmModel = new SubscribeConfirmModel();
+                                subscribeConfirmModel.setTransactionId(sharedPreferencesHome.getString(TRANSACTIONID, ""));
+                                subscribeConfirmModel.setPin(String.valueOf(editCode.getText().toString()));
+                                if (response != null) {
+                                    if (!response.body().isIsSuccessfull()) {
+                                        btnCodeRequestSender.setVisibility(View.VISIBLE);
+
+                                        Toast.makeText(ConfirmActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+
+                                    memberSignUpFotReciveToken("");
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResultJson> call, Throwable t) {
+                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+
+                                btnCodeRequestSender.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+
+                    }else{
+
+                        OtpApiFactory.getOtpClient().subscribeConfirm(subscribeConfirmModel).enqueue(new Callback<ResultJson>() {
+                            @Override
+                            public void onResponse(Call<ResultJson> call, Response<ResultJson> response) {
+
+                                if (response != null) {
+                                    if (!response.body().isIsSuccessfull()) {
+                                      //  btnCodeRequestSender.setVisibility(View.VISIBLE);
+
+                                        Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
+                                       // return;
+                                    }
+
+                                    memberSignUpFotReciveToken("");
+                                }
+                                else
+                                {
+                                    Toast.makeText(ConfirmActivity.this, "dkfgsd;fdfsdf", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResultJson> call, Throwable t) {
+                                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+
+                                btnCodeRequestSender.setVisibility(View.VISIBLE);
+
+                            }
+                        });
+
+
+                    }
+
+
+                }else{
+                    Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
+
+                }
 
             }
         });
@@ -143,39 +152,41 @@ public class ConfirmActivity extends AppCompatActivity {
 
 
     void memberSignUpFotReciveToken(String phoneNumber){
-
-        RetroClient.getApiService().memberSignUp(phoneNumber).enqueue(new Callback<ResultJsonMemberSignUp>() {
-            @Override
-            public void onResponse(Call<ResultJsonMemberSignUp> call, Response<ResultJsonMemberSignUp> response) {
-
-                btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-
-                if(response.isSuccessful()) {
-                    sharedPreferencesHome.edit().putString(GUID, response.body().getMemberSignUp().getToken()).commit();
-                    Intent intent = new Intent(ConfirmActivity.this, SelectSexActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }else {
-                    Toast.makeText(ConfirmActivity.this, "خطا در دریافت توکن", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ConfirmActivity.this, SelectSexActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+//        RetroClient.getApiService().memberSignUp(phoneNumber).enqueue(new Callback<ResultJsonMemberSignUp>() {
+//            @Override
+//            public void onResponse(Call<ResultJsonMemberSignUp> call, Response<ResultJsonMemberSignUp> response) {
 //
-//                    FragmentManager fm=getActivity().getSupportFragmentManager();
-//                    fm.popBackStack();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResultJsonMemberSignUp> call, Throwable t) {
-
-                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
-//                FragmentManager fm=getActivity().getSupportFragmentManager();
-//                fm.popBackStack();
-
-                btnCodeRequestSender.setVisibility(View.VISIBLE);
-
-            }
-
-        });
+//                btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//
+//                if(response.isSuccessful()) {
+//                  //  sharedPreferencesHome.edit().putString(GUID, response.body().getMemberSignUp().getToken()).commit();
+//                    Intent intent = new Intent(ConfirmActivity.this, SelectSexActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(intent);
+//                }else {
+//                    Toast.makeText(ConfirmActivity.this, "خطا در دریافت توکن", Toast.LENGTH_SHORT).show();
+////
+////                    FragmentManager fm=getActivity().getSupportFragmentManager();
+////                    fm.popBackStack();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResultJsonMemberSignUp> call, Throwable t) {
+//
+//                Toast.makeText(ConfirmActivity.this, R.string.noConnection, Toast.LENGTH_SHORT).show();
+////                FragmentManager fm=getActivity().getSupportFragmentManager();
+////                fm.popBackStack();
+//
+//                btnCodeRequestSender.setVisibility(View.VISIBLE);
+//
+//            }
+//
+//        });
 
     }
 }

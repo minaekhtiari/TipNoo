@@ -20,8 +20,8 @@ public class SubscribeModel {
 
     public SubscribeModel() {
 
-        Channel = "A-Hillavas";
-        servicecId="4";
+        Channel = "A-Teepeto";
+        servicecId="11";
     }
 
     public String getMobileNumber() {
