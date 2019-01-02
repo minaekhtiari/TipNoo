@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class SubscribeModel {
-Context context;
+private Context context;
 
     @SerializedName("MobileNumber")
     @Expose
@@ -19,12 +19,17 @@ Context context;
     @SerializedName("ServiceId")
     @Expose
     private String servicecId;
-
-    public SubscribeModel() {
-        Channel = JsonUtils.loadConfigInfo(context).getchannelId();
-        //Channel = "A-Teepeto";
+    public SubscribeModel(Context context){
+        this.context=context;
+          Channel = JsonUtils.loadConfigInfo(context).getchannelId();
         servicecId="11";
     }
+//
+//    public SubscribeModel() {
+//      //  Channel = JsonUtils.loadConfigInfo(context).getchannelId();
+//       Channel = "A-Teepeto";
+//        servicecId="11";
+//    }
 
     public String getMobileNumber() {
 

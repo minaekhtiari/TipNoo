@@ -4,8 +4,11 @@ import android.app.Application;
 import android.content.Context;
 
 
-
+import com.batch.android.Batch;
+import com.batch.android.BatchActivityLifecycleHelper;
+import com.batch.android.Config;
 import com.crashlytics.android.Crashlytics;
+import com.example.hillavas.tipnoo.Models.JsonUtils;
 
 
 import io.appnex.android.notification.Appnex;
@@ -25,13 +28,13 @@ public class App extends Application {
       Appnex.init(this);
 
       CharkhoneSdkApp.initSdk((Context) this, getSecrets(), false);
-//
-//        JsonUtils.loadConfigInfo(this).getBatchId();
-//
-//
-//        Batch.setConfig(new Config(JsonUtils.loadConfigInfo(this).getBatchId()));
-//
-//        registerActivityLifecycleCallbacks(new BatchActivityLifecycleHelper());
+
+        JsonUtils.loadConfigInfo(this).getBatchId();
+
+
+        Batch.setConfig(new Config(JsonUtils.loadConfigInfo(this).getBatchId()));
+
+        registerActivityLifecycleCallbacks(new BatchActivityLifecycleHelper());
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/iransans.ttf")
                 .setFontAttrId(R.attr.fontPath)

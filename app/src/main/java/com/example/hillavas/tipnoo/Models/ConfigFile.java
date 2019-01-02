@@ -6,7 +6,7 @@ public class ConfigFile {
       String appName;
       String batchId;
 
-    public void setchannelId(int categoryId) {
+    public void setchannelId(String channelId) {
         this.channelId = channelId;
     }
 
@@ -32,6 +32,7 @@ public class ConfigFile {
     public String getBatchId() {
         return batchId;
     }
+
 }
 
 

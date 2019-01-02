@@ -28,6 +28,7 @@ import com.example.hillavas.tipnoo.Retrofit.OtpApiFactory;
 import com.example.hillavas.tipnoo.Tools.ConnectionChecker;
 import com.example.hillavas.tipnoo.Tools.Validator;
 
+import io.appnex.android.utils.AndroidUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -90,11 +91,11 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
 
                 }
                 //todo
-                else {
-                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+//                    Intent intent=new Intent(RegisterActivity.this,ConfirmActivity.class);
+//                    startActivity(intent);
+//                    finish();
+
 
 
                 sharedPreferencesHome.edit().putString(MOBILE_NUMBER,mobileNumber).commit();
@@ -123,14 +124,17 @@ public class RegisterActivity extends AppCompatActivity implements IabBroadcastR
                     }
 
                 } else {
+                    AndroidUtils androidUtils=new AndroidUtils(RegisterActivity.this);
+                   Log.d("---12",""+ androidUtils.getUUID());
                     anim.setDuration(15000);
                     anim.setInterpolator(new DecelerateInterpolator());
                     anim.start();
-                    Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
+                   // Toast.makeText(RegisterActivity.this,"hamrahaval",Toast.LENGTH_LONG).show();
 
 
-                    SubscribeModel subscribeModel = new SubscribeModel();
+                    SubscribeModel subscribeModel = new SubscribeModel(RegisterActivity.this);
                     subscribeModel.setMobileNumber(String.valueOf(editmobileNumber.getText()));
+
 
                     btnRegister.setEnabled(false);
                    // progressBar.setVisibility(View.VISIBLE);

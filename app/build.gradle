@@ -28,7 +28,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-                appnex_channel_id           : 'hook',
+                appnex_channel_id           : 'A-G1TeepeTo',
                 appnex_app_id               : 'ae99fe70-daeb-e811-a94c-0050568c8c48',
                 // Project number pulled from dashboard, local value is ignored.
                 appnex_google_project_number: '38117559926'
@@ -38,8 +38,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        buildType {
         }
     }
 
@@ -97,11 +95,17 @@ dependencies {
     }
     //ahbottomnavigation
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.firebase:firebase-messaging:17.0.0'
+
     implementation 'com.uncopt:android.justified:1.0'
     implementation 'cz.msebera.android:httpclient:4.4.1.1'
     implementation project(':appnex-v2.0.1')
+
+    //batch
+    implementation 'com.batch.android:batch-sdk:1.12.1'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
 }
 apply plugin: 'com.google.gms.google-services'
 

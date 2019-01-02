@@ -13,11 +13,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hillavas.tipnoo.Models.ActionsCountResult;
+import com.example.hillavas.tipnoo.Models.AddFavoriteBody;
+import com.example.hillavas.tipnoo.Models.MemberSignToken;
 import com.example.hillavas.tipnoo.Models.ResultJson;
 import com.example.hillavas.tipnoo.Models.ResultJsonMemberSignUp;
 import com.example.hillavas.tipnoo.Models.SubscribeConfirmModel;
+import com.example.hillavas.tipnoo.Models.getMemberSignTokenBody;
+import com.example.hillavas.tipnoo.Retrofit.FileApi;
+import com.example.hillavas.tipnoo.Retrofit.IRetrofit;
 import com.example.hillavas.tipnoo.Retrofit.OtpApiFactory;
 import com.example.hillavas.tipnoo.Retrofit.RetroClient;
+import com.example.hillavas.tipnoo.Retrofit.RetroYogaClient;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,9 +91,9 @@ public class ConfirmActivity extends AppCompatActivity {
 
                                         Toast.makeText(ConfirmActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                         return;
-                                    }
+                                    }else {
 
-                                    memberSignUpFotReciveToken("");
+                                    memberSignUpFotReciveToken("09126790672");}
                                 }
 
 
@@ -113,9 +120,9 @@ public class ConfirmActivity extends AppCompatActivity {
 
                                         Toast.makeText(ConfirmActivity.this, R.string.incorrectCode, Toast.LENGTH_SHORT).show();
                                        // return;
-                                    }
+                                    }else {
 
-                                    memberSignUpFotReciveToken("");
+                                    memberSignUpFotReciveToken("09126790672");}
                                 }
                                 else
                                 {
@@ -155,6 +162,25 @@ public class ConfirmActivity extends AppCompatActivity {
         Intent intent = new Intent(ConfirmActivity.this, SelectSexActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        getMemberSignTokenBody getMemberSignTokenBody= new getMemberSignTokenBody();
+        getMemberSignTokenBody.setMobileNumber(phoneNumber);
+
+
+
+
+        IRetrofit iRetrofit = RetroYogaClient.getApiService();
+        final Call<MemberSignToken> contentResultCall = iRetrofit.getMemberSignToken(getMemberSignTokenBody);
+        contentResultCall.enqueue(new Callback<MemberSignToken>() {
+                                      @Override
+                                      public void onResponse(Call<MemberSignToken> call, Response<MemberSignToken> response) {
+response.body().getResultToken();
+                                      }
+
+                                      @Override
+                                      public void onFailure(Call<MemberSignToken> call, Throwable t) {
+
+                                      }
+                                  });
 //        RetroClient.getApiService().memberSignUp(phoneNumber).enqueue(new Callback<ResultJsonMemberSignUp>() {
 //            @Override
 //            public void onResponse(Call<ResultJsonMemberSignUp> call, Response<ResultJsonMemberSignUp> response) {

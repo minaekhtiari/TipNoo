@@ -25,7 +25,7 @@ public class JsonUtils {
 
 
             configFile.setBatchId(jsonObject.getString("batchId"));
-            configFile.setCategoryId(jsonObject.getInt("categoryId"));
+            configFile.setchannelId(jsonObject.getString("channelId"));
 
             return configFile;
 
