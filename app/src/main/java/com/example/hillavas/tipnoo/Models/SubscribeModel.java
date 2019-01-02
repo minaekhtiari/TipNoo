@@ -1,11 +1,13 @@
 
 package com.example.hillavas.tipnoo.Models;
 
+import android.content.Context;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class SubscribeModel {
-
+Context context;
 
     @SerializedName("MobileNumber")
     @Expose
@@ -19,8 +21,8 @@ public class SubscribeModel {
     private String servicecId;
 
     public SubscribeModel() {
-
-        Channel = "A-Teepeto";
+        Channel = JsonUtils.loadConfigInfo(context).getchannelId();
+        //Channel = "A-Teepeto";
         servicecId="11";
     }
 
