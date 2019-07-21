@@ -118,6 +118,7 @@ ListView filterrecyclerView;
 
                     if(response.body().getIsSuccessful()) {
                         contentLists = response.body().getResult();
+
                         contentRecyclerAdapter =
                                 new FilterContentRecyclerAdapter(FilterActivity.this, contentLists);
                         filterrecyclerView.setAdapter(contentRecyclerAdapter);

@@ -17,9 +17,14 @@ public interface OtpApi {
     @POST("OTP/SubScribeRequest")
     Call<ResultJson> subscribe(@Body SubscribeModel subscribeModel);
 
+
+
+
     @Headers("Content-Type: application/json; charset=utf-8")
     @POST("/OTP/SubscribeConfirm")
     Call<ResultJson> subscribeConfirm(@Body SubscribeConfirmModel subscribeConfirmModel);
+
+
 
     @Headers("Content-Type: application/json; charset=utf-8")
     @POST("/Otp/SubscribeConfirmViaCode")
